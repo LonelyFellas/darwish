@@ -44,7 +44,12 @@ declare namespace Darwish {
     onTrue?: JSX.Element;
     onFalse?: JSX.Element;
   }) => JSX.Element | null;
-  type cloneDeep<T> = <T>(data: T) => T;
+
+  /** hooks */
+  type useImmer<T> = (initialValue: T) => any[];
+  type useSyncState<T extends object> = (initialValue: T) => T;
+  /** utils */
+  type cloneDeep<T> = (data: T) => T;
   type isFilterEmptyString<T> = (obj: T, isFilterEmptyString?: boolean) => T;
   type getQueryParams = (URL: string) => string;
   type isBlanks<T> = (obj: T) => boolean;

@@ -1,6 +1,17 @@
+/**
+ * Components
+ */
 import IteratorViews from './components/IteratorViews';
 import Selection from './components/Selection';
 
+/**
+ * hooks
+ */
+import useImmer from './hooks/useImmer';
+import useSyncState from './hooks/useSyncState';
+/**
+ * utils
+ */
 import cloneDeep from './utils/cloneDeep';
 import isFilterUselessKeyValue from './utils/filterUselessKeyValue';
 import getQueryParams from './utils/getQueryParams';
@@ -39,5 +50,29 @@ const Darwish = {
   isSet,
   isString,
   isUndef,
+  useImmer,
+  useSyncState,
+};
+export {
+  IteratorViews,
+  Selection,
+  cloneDeep,
+  getQueryParams,
+  isArray,
+  isBlanks,
+  isBoolean,
+  isBrowser,
+  isEmailValid,
+  isFilterUselessKeyValue,
+  isFunction,
+  isMap,
+  isNumber,
+  isObject,
+  isSet,
+  isString,
+  isUndef,
+  shuffleArray,
+  useImmer,
+  useSyncState,
 };
 export default Darwish;

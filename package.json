@@ -1,13 +1,21 @@
 {
   "name": "darwish",
-  "version": "0.0.6",
+  "version": "0.0.10",
   "description": "A react library developed with dumi",
   "license": "MIT",
   "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/global.d.ts",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "directory": "https://github.com/LonelyFellas/darwish/"
+  },
+  "bugs": {
+    "url": "https://github.com/LonelyFellas/darwish/issues"
+  },
+  "homepage": "https://github.com/LonelyFellas/darwish#readme",
   "scripts": {
     "build": "father build",
     "build:watch": "father dev",
@@ -71,6 +79,9 @@
     "access": "public"
   },
   "authors": [
-    "darwish <email@example.com>"
-  ]
+    "darwish <289582304@qq.com>"
+  ],
+  "dependencies": {
+    "immer": "^10.0.2"
+  }
 }
