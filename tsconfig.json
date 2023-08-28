@@ -8,7 +8,7 @@
     "baseUrl": "./",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "darwish": ["src"],
+      "darwish": ["src", "*"],
       "darwish/*": ["src/*", "*"]
     }
   },

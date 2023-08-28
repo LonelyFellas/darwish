@@ -1,6 +1,4 @@
 import React, { Fragment, createElement } from 'react';
-type ElementLabel = keyof JSX.IntrinsicElements;
-
 /**
  *
  * @param param0
@@ -13,7 +11,7 @@ export default function IteratorViews({
 }: {
   items: any[] | number;
   children?: JSX.Element | ((item: any, index: number) => JSX.Element) | null;
-  label?: ElementLabel;
+  label?: Darwish.ElementLabel;
 }) {
   return createElement(
     label || Fragment,
