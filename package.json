@@ -1,10 +1,10 @@
 {
   "name": "darwish",
-  "version": "0.0.10",
+  "version": "0.0.16",
   "description": "A react library developed with dumi",
   "license": "MIT",
   "module": "dist/index.js",
-  "types": "dist/global.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],

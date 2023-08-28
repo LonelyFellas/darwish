@@ -7,12 +7,20 @@ import Selection from './components/Selection';
 /**
  * hooks
  */
+import useDisplayDevError from './hooks/useDisplayDevError';
 import useImmer from './hooks/useImmer';
 import useSyncState from './hooks/useSyncState';
 /**
  * utils
  */
+import type {
+  ElementChangeEvent,
+  ElementClickEvent,
+  ElementLabel,
+  ElementRef,
+} from './index.d';
 import cloneDeep from './utils/cloneDeep';
+import dlv from './utils/dlv';
 import isFilterUselessKeyValue from './utils/filterUselessKeyValue';
 import getQueryParams from './utils/getQueryParams';
 import isBlanks from './utils/isBlanks';
@@ -50,13 +58,16 @@ const Darwish = {
   isSet,
   isString,
   isUndef,
+  dlv,
   useImmer,
   useSyncState,
+  useDisplayDevError,
 };
 export {
   IteratorViews,
   Selection,
   cloneDeep,
+  dlv,
   getQueryParams,
   isArray,
   isBlanks,
@@ -72,7 +83,9 @@ export {
   isString,
   isUndef,
   shuffleArray,
+  useDisplayDevError,
   useImmer,
   useSyncState,
 };
+export type { ElementChangeEvent, ElementClickEvent, ElementLabel, ElementRef };
 export default Darwish;

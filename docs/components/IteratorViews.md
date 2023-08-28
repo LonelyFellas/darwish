@@ -2,7 +2,7 @@
 
 用于迭代器的Views
 
-```tsx
+```jsx
 import { IteratorViews } from 'darwish';
 
 export default () => {

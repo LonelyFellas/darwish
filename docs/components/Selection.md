@@ -2,7 +2,7 @@
 
 做条件判断的一个组件，看个人喜好需不需要这个组件的必要
 
-```tsx
+```jsx
 import { Selection } from 'darwish';
 import { useState } from 'react';
 
