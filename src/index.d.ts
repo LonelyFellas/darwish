@@ -16,6 +16,19 @@ declare namespace Darwish {
   export type ElementChangeEvent<T extends ElementLabel> = React.ChangeEvent<
     ElementRef<T>
   >;
+  export type CList = CList;
+  export type AnyType =
+    | 'null'
+    | 'undefined'
+    | 'string'
+    | 'boolean'
+    | 'object'
+    | 'array'
+    | 'symbol'
+    | 'date'
+    | 'function'
+    | 'RegExp'
+    | 'Set';
 }
 /**
  * Components
@@ -51,13 +64,15 @@ declare const Darwish: {
   isSet: (value: unknown) => value is Set<any>;
   isString: (value: unknown) => value is string;
   isUndef: (value: unknown) => value is undefined;
-  dlv: (
-    obj: Record<string, string>,
-    key: string,
-    def: unknown,
-    p: number,
-    undef: string,
+  dlv: <T_4 extends unknown>(
+    obj: T_4,
+    key?: string,
+    def?: unknown,
+    p?: number,
+    undef?: unknown,
   ) => unknown;
+  typeOfData: (value: unknown) => Darwish.AnyType;
+  deepEqual: <T>(lfs: T, rfs: T) => boolean;
   useImmer: typeof useImmer;
   useSyncState: <T_2 extends object>(initialValue: T_2) => any;
   useDisplayDevError: <T_3>(
@@ -66,3 +81,10 @@ declare const Darwish: {
 };
 
 export default Darwish;
+
+export declare class CList {
+  dataSource: Array<unknown>;
+  remove: (index: number) => void;
+  sort: () => void;
+  add: () => void;
+}

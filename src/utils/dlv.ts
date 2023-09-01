@@ -1,14 +1,13 @@
-export default function dlv(
-  obj: Record<string, string>,
-  key: string,
-  def: unknown,
-  p: number,
-  undef: string,
+export default function dlv<T extends any>(
+  obj: T,
+  key: string = '',
+  def: unknown = '',
+  p: number = 0,
+  undef: unknown = '',
 ) {
-  const newkey = key && key.split ? key.split('.') : [key];
-  let newObj = {};
-  for (p = 0; p < newkey.length; p++) {
-    newObj = obj ? obj[key[p]] : undef;
+  const keyArr = key.split ? key.split('.') : key;
+  for (p = 0; p < keyArr.length; p++) {
+    obj = obj ? obj[keyArr[p] as keyof T] : (undef as any);
   }
-  return newObj === undef ? def : obj;
+  return obj === undef ? def : obj;
 }

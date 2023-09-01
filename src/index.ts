@@ -14,12 +14,15 @@ import useSyncState from './hooks/useSyncState';
  * utils
  */
 import type {
+  AnyType,
+  CList,
   ElementChangeEvent,
   ElementClickEvent,
   ElementLabel,
   ElementRef,
 } from './index.d';
 import cloneDeep from './utils/cloneDeep';
+import deepEqual from './utils/deepEqual';
 import dlv from './utils/dlv';
 import isFilterUselessKeyValue from './utils/filterUselessKeyValue';
 import getQueryParams from './utils/getQueryParams';
@@ -37,8 +40,9 @@ import {
   isString,
   isUndef,
 } from './utils/isTypings';
+import List from './utils/list';
 import shuffleArray from './utils/shuffleArray';
-
+import typeOfData from './utils/typeOfData';
 const Darwish = {
   IteratorViews,
   Selection,
@@ -59,14 +63,19 @@ const Darwish = {
   isString,
   isUndef,
   dlv,
+  typeOfData,
+  deepEqual,
+  List,
   useImmer,
   useSyncState,
   useDisplayDevError,
 };
 export {
   IteratorViews,
+  List,
   Selection,
   cloneDeep,
+  deepEqual,
   dlv,
   getQueryParams,
   isArray,
@@ -83,9 +92,17 @@ export {
   isString,
   isUndef,
   shuffleArray,
+  typeOfData,
   useDisplayDevError,
   useImmer,
   useSyncState,
 };
-export type { ElementChangeEvent, ElementClickEvent, ElementLabel, ElementRef };
+export type {
+  AnyType,
+  CList,
+  ElementChangeEvent,
+  ElementClickEvent,
+  ElementLabel,
+  ElementRef,
+};
 export default Darwish;
