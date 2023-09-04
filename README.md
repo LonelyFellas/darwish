@@ -7,11 +7,11 @@ A react library developed with dumi
 
 ## Usage
 
-TODO
+一些前端的视图组件，React自定义钩子，和功能函数的库
 
 ## Options
 
-TODO
+具体可以去源码
 
 ## Development
 
@@ -38,4 +38,5 @@ $ pnpm run doctor
 ## LICENSE
 
 MIT
+
 # darwish
