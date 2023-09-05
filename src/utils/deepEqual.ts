@@ -1,15 +1,26 @@
 import { isObject } from 'darwish';
-
-export default function deepEqual<T>(lfs: T, rfs: T) {
-  let isEqual = true;
-  if (isObject(lfs) && isObject(rfs)) {
-    isEqual = deepEqualByObject(lfs, rfs);
-  }
-  if (Array.isArray(lfs) && Array.isArray(rfs)) {
-    isEqual = deepEqualByArray(lfs, rfs);
+export function deepEqualByArray<T extends any[]>(lfs: T[], rfs: T[]) {
+  if (lfs.length !== rfs.length) {
+    return false;
   }
 
-  return isEqual;
+  lfs.sort();
+  rfs.sort();
+  for (let i = 0; i < lfs.length; i++) {
+    if (isObject(lfs[i]) && isObject(rfs[i])) {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      if (!deepEqualByObject(lfs[i], rfs[i])) {
+        return false;
+      }
+    } else if (Array.isArray(lfs[i]) && Array.isArray(rfs[i])) {
+      if (!deepEqualByArray(lfs[i], rfs[i])) {
+        return false;
+      }
+    } else if (lfs[i] !== rfs[i]) {
+      return false;
+    }
+  }
+  return true;
 }
 export function deepEqualByObject<T extends Record<any, any>>(lfs: T, rfs: T) {
   const key1 = Object.keys(lfs);
@@ -45,25 +56,16 @@ export function deepEqualByObject<T extends Record<any, any>>(lfs: T, rfs: T) {
 
   return true;
 }
-export function deepEqualByArray<T extends any[]>(lfs: T[], rfs: T[]) {
-  if (lfs.length !== rfs.length) {
-    return false;
+
+
+export default function deepEqual<T>(lfs: T, rfs: T) {
+  let isEqual = true;
+  if (isObject(lfs) && isObject(rfs)) {
+    isEqual = deepEqualByObject(lfs, rfs);
+  }
+  if (Array.isArray(lfs) && Array.isArray(rfs)) {
+    isEqual = deepEqualByArray(lfs, rfs);
   }
 
-  lfs.sort();
-  rfs.sort();
-  for (let i = 0; i < lfs.length; i++) {
-    if (isObject(lfs[i]) && isObject(rfs[i])) {
-      if (!deepEqualByObject(lfs[i], rfs[i])) {
-        return false;
-      }
-    } else if (Array.isArray(lfs[i]) && Array.isArray(rfs[i])) {
-      if (!deepEqualByArray(lfs[i], rfs[i])) {
-        return false;
-      }
-    } else if (lfs[i] !== rfs[i]) {
-      return false;
-    }
-  }
-  return true;
+  return isEqual;
 }
