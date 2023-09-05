@@ -1,5 +1,5 @@
-import { CList, deepEqual, isArray, isObject } from 'darwish';
-export default class ListObj implements CList {
+import { deepEqual, isArray, isObject } from 'darwish';
+export default class ListObj {
   dataSource: Array<unknown> = [];
   constructor() {}
   add = (value: unknown) => {
@@ -45,16 +45,16 @@ export default class ListObj implements CList {
   };
 }
 
-const listObj = new ListObj();
-listObj.add({ text: 1, value: 1 });
-listObj.add({ a: 1 });
-listObj.add({ a: 1 });
-listObj.add({ a: 1 });
-listObj.add({ a: 2 });
-console.log(listObj.dataSource);
-listObj.remove({ index: 1 });
-console.log(listObj.dataSource);
-listObj.remove({ target: { a: 2 } });
-console.log(listObj.dataSource);
-listObj.remove({ primaryKeyOfValue: { primaryKey: 'text', value: 1 } });
-console.log(listObj.dataSource);
+// const listObj = new ListObj();
+// listObj.add({ text: 1, value: 1 });
+// listObj.add({ a: 1 });
+// listObj.add({ a: 1 });
+// listObj.add({ a: 1 });
+// listObj.add({ a: 2 });
+// console.log(listObj.dataSource);
+// listObj.remove({ index: 1 });
+// console.log(listObj.dataSource);
+// listObj.remove({ target: { a: 2 } });
+// console.log(listObj.dataSource);
+// listObj.remove({ primaryKeyOfValue: { primaryKey: 'text', value: 1 } });
+// console.log(listObj.dataSource);

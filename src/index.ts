@@ -9,17 +9,19 @@ import Selection from './components/Selection';
  */
 import useDisplayDevError from './hooks/useDisplayDevError';
 import useImmer from './hooks/useImmer';
+import useList from './hooks/useList';
 import useSyncState from './hooks/useSyncState';
+import useUpdate from './hooks/useUpdate';
 /**
  * utils
  */
 import type {
   AnyType,
-  CList,
   ElementChangeEvent,
   ElementClickEvent,
   ElementLabel,
   ElementRef,
+  TList,
 } from './index.d';
 import cloneDeep from './utils/cloneDeep';
 import deepEqual from './utils/deepEqual';
@@ -69,6 +71,8 @@ const Darwish = {
   useImmer,
   useSyncState,
   useDisplayDevError,
+  useList,
+  useUpdate,
 };
 export {
   IteratorViews,
@@ -95,14 +99,16 @@ export {
   typeOfData,
   useDisplayDevError,
   useImmer,
+  useList,
   useSyncState,
+  useUpdate,
 };
 export type {
   AnyType,
-  CList,
   ElementChangeEvent,
   ElementClickEvent,
   ElementLabel,
   ElementRef,
+  TList,
 };
 export default Darwish;

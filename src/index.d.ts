@@ -1,3 +1,18 @@
+export declare class CList {
+  dataSource: Array<unknown>;
+  remove: (option: { index: number }) => void;
+  remove: (option: { target: unknown }) => void;
+  remove: (option: {
+    primaryKeyOfValue: { primaryKey: string; value: any };
+  }) => void;
+  remove: (option: {
+    index?: number;
+    target?: unknown;
+    primaryKeyOfValue?: { primaryKey: string; value: any };
+  }) => void;
+  sort: () => void;
+  add: (value: unknown) => void;
+}
 export = Darwish;
 export as namespace Darwish;
 declare namespace Darwish {
@@ -16,7 +31,7 @@ declare namespace Darwish {
   export type ElementChangeEvent<T extends ElementLabel> = React.ChangeEvent<
     ElementRef<T>
   >;
-  export type CList = CList;
+  export type TList = CList;
   export type AnyType =
     | 'null'
     | 'undefined'
@@ -73,18 +88,42 @@ declare const Darwish: {
   ) => unknown;
   typeOfData: (value: unknown) => Darwish.AnyType;
   deepEqual: <T>(lfs: T, rfs: T) => boolean;
+  List: Darwish.TList;
   useImmer: typeof useImmer;
   useSyncState: <T_2 extends object>(initialValue: T_2) => any;
   useDisplayDevError: <T_3>(
     errorText?: T_3 | undefined,
   ) => (err?: T_3 | undefined) => void;
+  useUpdate: () => React.DispatchWithoutAction;
+  useList: () => <T_5>(
+    initialList: Array<T_5>,
+  ) => [Array<T_5>, IUseListUtil<T_5>];
 };
 
-export default Darwish;
+/**
+ * 全局
+ */
 
-export declare class CList {
-  dataSource: Array<unknown>;
-  remove: (index: number) => void;
-  sort: () => void;
-  add: () => void;
+declare global {
+  interface IUseListUtil<T> {
+    set: (value: IHookState<T[]>) => void;
+    push: (value: T) => void;
+    updateAt: (index: number, value: T) => void;
+    insertAt: (index: number, insertValue: T) => void;
+    update: (predicate: (a: T, b: T) => boolean, updateValue: T) => void;
+    updateFirst: (predicate: (a: T, b: T) => boolean, updateValue: T) => void;
+    upsert: (predicate: (a: T, b: T) => boolean, updateValue: T) => void;
+    sort: (callbackFn: (a: T, b: T) => number) => void;
+    filter: (
+      callbackFn: (value: T, index?: number, array?: T[]) => boolean,
+      thisArg?: any,
+    ) => void;
+    removeAt: (index: number) => void;
+    clear: () => void;
+    reset: () => void;
+  }
+
+  type IHookState<T extends Array<unknown>> = T | ((args: T) => T);
 }
+
+export default Darwish;
