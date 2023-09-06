@@ -1,22 +1,22 @@
 ---
 hero:
-  title: library
+  title: darwish
   description: A react library developed with dumi
   actions:
-    - text: Hello
-      link: /
-    - text: World
-      link: /
+    - text: Components List
+      link: /components
+    - text: Hooks List
+      link: /hooks
 features:
-  - title: Hello
+  - title: Component
     emoji: 💎
-    description: Put hello description here
-  - title: World
+    description: 高度封装业务组件
+  - title: Hooks
     emoji: 🌈
-    description: Put world description here
-  - title: '!'
+    description: 高质量的hooks
+  - title: utils
     emoji: 🚀
-    description: Put ! description here
+    description: 高实用的功能函数
 ---
 
 darwish
