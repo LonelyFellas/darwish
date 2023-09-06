@@ -4,8 +4,6 @@ node_modules
 .dumi/tmp-test
 .dumi/tmp-production
 .DS_Store
-# dist
-/docs-dist
 # edit
 .vscode
 .idea
