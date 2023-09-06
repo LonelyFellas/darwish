@@ -9,9 +9,12 @@ import Selection from './components/Selection';
  */
 import useDisplayDevError from './hooks/useDisplayDevError';
 import useImmer from './hooks/useImmer';
+import useKey from './hooks/useKey';
 import useList from './hooks/useList';
 import useSyncState from './hooks/useSyncState';
+import useTextSelection from './hooks/useTextSelection';
 import useUpdate from './hooks/useUpdate';
+import useUpdateEffect from './hooks/useUpdateEffect';
 /**
  * utils
  */
@@ -73,6 +76,9 @@ const Darwish = {
   useDisplayDevError,
   useList,
   useUpdate,
+  useUpdateEffect,
+  useKey,
+  useTextSelection,
 };
 export {
   IteratorViews,
@@ -99,9 +105,12 @@ export {
   typeOfData,
   useDisplayDevError,
   useImmer,
+  useKey,
   useList,
   useSyncState,
+  useTextSelection,
   useUpdate,
+  useUpdateEffect,
 };
 export type {
   AnyType,

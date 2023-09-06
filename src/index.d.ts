@@ -95,9 +95,15 @@ declare const Darwish: {
     errorText?: T_3 | undefined,
   ) => (err?: T_3 | undefined) => void;
   useUpdate: () => React.DispatchWithoutAction;
+  useUpdateEffect: (
+    effect: React.EffectCallback,
+    deps?: React.DependencyList | undefined,
+  ) => void;
+  useKey: (code: string, callback: () => void) => void;
   useList: () => <T_5>(
     initialList: Array<T_5>,
   ) => [Array<T_5>, IUseListUtil<T_5>];
+  useTextSelection: () => { text: string };
 };
 
 /**
