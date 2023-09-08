@@ -42,8 +42,8 @@ declare namespace Darwish {
     | 'symbol'
     | 'date'
     | 'function'
-    | 'RegExp'
-    | 'Set';
+    | 'regExp'
+    | 'set';
 }
 /**
  * Components
