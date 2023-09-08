@@ -10,6 +10,7 @@ export const isNull = (value: unknown): value is null =>
   objProtoCallType(value, 'null');
 export const isBigint = (value: unknown): value is bigint =>
   typeof value === 'bigint';
+export const isArray = (value: unknown): value is any[] => Array.isArray(value);
 export const isSymbol = (value: unknown): value is symbol =>
   typeof value === 'symbol';
 export const isFunction = (value: unknown): value is Function =>
