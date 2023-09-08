@@ -104,6 +104,38 @@ declare const Darwish: {
     initialList: Array<T_5>,
   ) => [Array<T_5>, IUseListUtil<T_5>];
   useTextSelection: () => { text: string };
+  useBoolean: (defaultValue: boolean) => [boolean, IBooleanFn];
+  useToggle: {
+    <T = boolean>(): [boolean, Actions<T>];
+    <T>(): [T, Actions<T>];
+    <T, U>(defaultValue: T, reverseValue: U): [T | U, Actions<T | U>];
+  };
+  useCookie: (
+    cookieName: string,
+  ) => readonly [
+    string | null,
+    (value: string, option?: Cookies.CookieAttributes | undefined) => void,
+    (option?: Cookies.CookieAttributes | undefined) => void,
+  ];
+  useHover: (
+    hoveredView: JSX.Element,
+  ) => readonly [React.FunctionComponentElement<any>, boolean];
+  useSet: <T_6>(initialValue: T_6[] | Set<T_6>) => readonly [
+    Set<T_6>,
+    {
+      add: (addValue: T_6) => void;
+      remove: (removeValue: T_6) => void;
+      toggle: (toggleValue: T_6) => void;
+      reset: () => void;
+      has: (hasValue: T_6) => boolean;
+    },
+  ];
+  useSetState: <T_7 extends Record<any, any> | (() => Record<any, any>)>(
+    initialValue: T_7,
+  ) => readonly [
+    Record<any, any>,
+    (updateValue: Partial<T_7> | ((args: T_7) => Partial<T_7>)) => void,
+  ];
 };
 
 /**

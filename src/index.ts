@@ -7,12 +7,18 @@ import Selection from './components/Selection';
 /**
  * hooks
  */
+import useBoolean from './hooks/useBoolean';
+import useCookie from './hooks/useCookie';
 import useDisplayDevError from './hooks/useDisplayDevError';
+import useHover from './hooks/useHover';
 import useImmer from './hooks/useImmer';
 import useKey from './hooks/useKey';
 import useList from './hooks/useList';
+import useSet from './hooks/useSet';
+import useSetState from './hooks/useSetState';
 import useSyncState from './hooks/useSyncState';
 import useTextSelection from './hooks/useTextSelection';
+import useToggle from './hooks/useToggle';
 import useUpdate from './hooks/useUpdate';
 import useUpdateEffect from './hooks/useUpdateEffect';
 /**
@@ -44,6 +50,7 @@ import {
   isNull,
   isNumber,
   isObject,
+  isPromise,
   isSet,
   isString,
   isSymbol,
@@ -72,6 +79,7 @@ const Darwish = {
   isMap,
   isNumber,
   isObject,
+  isPromise,
   isSet,
   isString,
   isUndef,
@@ -87,6 +95,12 @@ const Darwish = {
   useUpdateEffect,
   useKey,
   useTextSelection,
+  useBoolean,
+  useToggle,
+  useCookie,
+  useHover,
+  useSet,
+  useSetState,
 };
 export {
   IteratorViews,
@@ -109,18 +123,25 @@ export {
   isNull,
   isNumber,
   isObject,
+  isPromise,
   isSet,
   isString,
   isSymbol,
   isUndef,
   shuffleArray,
   typeOfData,
+  useBoolean,
+  useCookie,
   useDisplayDevError,
+  useHover,
   useImmer,
   useKey,
   useList,
+  useSet,
+  useSetState,
   useSyncState,
   useTextSelection,
+  useToggle,
   useUpdate,
   useUpdateEffect,
 };
