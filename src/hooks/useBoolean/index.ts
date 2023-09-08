@@ -5,10 +5,8 @@ import * as React from 'react';
  * @param defaultValue default value -> boolean
  * @returns [boolean, (settingValue: boolean) => void] -> Array
  */
-type IBooleanFn = (
-  settingValue: boolean | React.MouseEvent<HTMLButtonElement, MouseEvent>,
-) => void;
-const useBoolean: (defaultValue: boolean) => [boolean, IBooleanFn] = (
+
+const useBoolean: (defaultValue: boolean) => [boolean, BooleanFn] = (
   defaultValue: boolean,
 ) => {
   const [state, setState] = React.useState(defaultValue);

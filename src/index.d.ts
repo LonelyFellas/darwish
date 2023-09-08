@@ -104,11 +104,11 @@ declare const Darwish: {
     initialList: Array<T_5>,
   ) => [Array<T_5>, IUseListUtil<T_5>];
   useTextSelection: () => { text: string };
-  useBoolean: (defaultValue: boolean) => [boolean, IBooleanFn];
+  useBoolean: (defaultValue: boolean) => [boolean, BooleanFn];
   useToggle: {
-    <T = boolean>(): [boolean, Actions<T>];
-    <T>(): [T, Actions<T>];
-    <T, U>(defaultValue: T, reverseValue: U): [T | U, Actions<T | U>];
+    <T = boolean>(): [boolean, ToggleActions<T>];
+    <T>(): [T, ToggleActions<T>];
+    <T, U>(defaultValue: T, reverseValue: U): [T | U, ToggleActions<T | U>];
   };
   useCookie: (
     cookieName: string,
@@ -162,6 +162,15 @@ declare global {
   }
 
   type IHookState<T extends Array<unknown>> = T | ((args: T) => T);
+  type BooleanFn = (
+    settingValue: boolean | React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => void;
+  interface ToggleActions<T> {
+    toggle: () => void;
+    set: (settingValue: T) => void;
+    setLeft: () => void;
+    setRight: () => void;
+  }
 }
 
 export default Darwish;
