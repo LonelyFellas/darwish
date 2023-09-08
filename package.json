@@ -55,6 +55,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
+    "@types/js-cookie": "^3.0.3",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@umijs/lint": "^4.0.78",
@@ -82,6 +83,7 @@
     "darwish <289582304@qq.com>"
   ],
   "dependencies": {
-    "immer": "^10.0.2"
+    "immer": "^10.0.2",
+    "js-cookie": "^3.0.5"
   }
 }
