@@ -1,4 +1,4 @@
-import { isObject } from 'darwish';
+import { isMap, isObject, isSet, typeOfData } from 'darwish';
 export function deepEqualByArray<T extends any[]>(lfs: T[], rfs: T[]) {
   if (lfs.length !== rfs.length) {
     return false;
@@ -57,13 +57,17 @@ export function deepEqualByObject<T extends Record<any, any>>(lfs: T, rfs: T) {
   return true;
 }
 
-
 export default function deepEqual<T>(lfs: T, rfs: T) {
-  let isEqual = true;
-  if (isObject(lfs) && isObject(rfs)) {
+  if (typeOfData(lfs) !== typeOfData(rfs)) return false;
+  let isEqual = lfs === rfs;
+  if ((isSet(lfs) && isSet(rfs)) || (isMap(lfs) && isMap(rfs))) {
+    let arrLfs = Array.from(lfs);
+    let arrRfs = Array.from(rfs);
+    debugger;
+    isEqual = deepEqualByArray(arrLfs, arrRfs);
+  } else if (isObject(lfs) && isObject(rfs)) {
     isEqual = deepEqualByObject(lfs, rfs);
-  }
-  if (Array.isArray(lfs) && Array.isArray(rfs)) {
+  } else if (Array.isArray(lfs) && Array.isArray(rfs)) {
     isEqual = deepEqualByArray(lfs, rfs);
   }
 
