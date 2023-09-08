@@ -1,15 +1,15 @@
 export declare class CList {
   dataSource: Array<unknown>;
-  remove: (option: { index: number }) => void;
-  remove: (option: { target: unknown }) => void;
-  remove: (option: {
-    primaryKeyOfValue: { primaryKey: string; value: any };
-  }) => void;
-  remove: (option: {
-    index?: number;
-    target?: unknown;
-    primaryKeyOfValue?: { primaryKey: string; value: any };
-  }) => void;
+  remove: {
+    (option: { index: number }): void;
+    (option: { target: unknown }): void;
+    (option: { primaryKeyOfValue: { primaryKey: string; value: any } }): void;
+    (option: {
+      index?: number;
+      target?: unknown;
+      primaryKeyOfValue?: { primaryKey: string; value: any };
+    }): void;
+  };
   sort: () => void;
   add: (value: unknown) => void;
 }
@@ -114,8 +114,11 @@ declare const Darwish: {
     cookieName: string,
   ) => readonly [
     string | null,
-    (value: string, option?: Cookies.CookieAttributes | undefined) => void,
-    (option?: Cookies.CookieAttributes | undefined) => void,
+    (
+      value: string,
+      option?: import('js-cookie').CookieAttributes | undefined,
+    ) => void,
+    (option?: import('js-cookie').CookieAttributes | undefined) => void,
   ];
   useHover: (
     hoveredView: JSX.Element,
