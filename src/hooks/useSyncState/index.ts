@@ -1,10 +1,10 @@
-import React from 'react';
+import { useMemo, useState } from 'react';
 import useDisplayDevError from '../useDisplayDevError';
 const useSyncState = <T extends object>(initialValue: T) => {
-  const [state, setState] = React.useState(initialValue);
+  const [state, setState] = useState(initialValue);
   const dispatchError = useDisplayDevError();
 
-  const proxy = React.useMemo(() => {
+  const proxy = useMemo(() => {
     return new Proxy(initialValue, {
       set(obj, prop, value) {
         try {

@@ -1,5 +1,5 @@
-import { isBrowser } from 'darwish';
 import { useEffect, useState } from 'react';
+import isBrowser from '../../utils/isBrowser';
 
 export default function useTextSelection() {
   const [text, setText] = useState('');

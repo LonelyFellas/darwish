@@ -1,24 +1,26 @@
-import * as React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 /**
- * 
+ *
  * @param errorText 默认错误信息
  * @returns 返回出发错误信息的函数，⚠️注意：错误信息只会在开发环境触发
  */
-const useDisplayDevError: <T>(errorText?: T) => (err?: T) => void = (errorText) => {
-  const [error, setError] = React.useState(errorText);
+const useDisplayDevError: <T>(errorText?: T) => (err?: T) => void = (
+  errorText,
+) => {
+  const [error, setError] = useState(errorText);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (process.env.NODE_ENV === 'development' && error) {
       console.error(errorText);
     }
-  }, [error])
+  }, [error]);
 
-  const dispatchError = React.useCallback((err?: any) => {
-    return setError(typeof err === 'undefined' ? errorText : err)
-  }, [])
+  const dispatchError = useCallback((err?: any) => {
+    return setError(typeof err === 'undefined' ? errorText : err);
+  }, []);
 
-  return dispatchError
-}
+  return dispatchError;
+};
 
-export default useDisplayDevError
+export default useDisplayDevError;

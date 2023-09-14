@@ -1,5 +1,6 @@
-import { isFunction, useUpdate } from 'darwish';
 import { useMemo, useRef } from 'react';
+import { isFunction } from '../../utils/isTypings';
+import useUpdate from '../useUpdate';
 
 const resolveHooksState = <T extends Array<unknown>>(
   newList: IHookState<T>,

@@ -1,4 +1,4 @@
-import { typeOfData } from 'darwish';
+import typeOfData from './typeOfData';
 
 export const sortOrder =
   (c: number = 1) =>

@@ -1,4 +1,4 @@
-import { isObject } from 'darwish';
+import { isObject } from './isTypings';
 
 /**
  *

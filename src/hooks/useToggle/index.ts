@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useMemo, useState } from 'react';
 
 function useToggle<T = boolean>(): [boolean, ToggleActions<T>];
 
@@ -13,9 +13,9 @@ function useToggle<T, U>(
   defaultValue: T = false as unknown as T,
   reverseValue?: U,
 ) {
-  const [state, setState] = React.useState<T | U>(defaultValue);
+  const [state, setState] = useState<T | U>(defaultValue);
 
-  const action = React.useMemo(() => {
+  const action = useMemo(() => {
     const reverseValueOrigin = (
       reverseValue === 'undefined' ? !defaultValue : reverseValue
     ) as T | U;

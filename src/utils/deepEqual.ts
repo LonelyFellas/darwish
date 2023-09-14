@@ -1,4 +1,6 @@
-import { isDate, isMap, isObject, isSet, typeOfData } from 'darwish';
+import { isDate, isMap, isObject, isSet } from './isTypings';
+import typeOfData from './typeOfData';
+
 export function deepEqualByArray<T extends any[]>(lfs: T[], rfs: T[]) {
   if (lfs.length !== rfs.length) {
     return false;

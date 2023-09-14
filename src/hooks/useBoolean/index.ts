@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 
 /**
  *
@@ -9,7 +9,7 @@ import * as React from 'react';
 const useBoolean: (defaultValue: boolean) => [boolean, BooleanFn] = (
   defaultValue: boolean,
 ) => {
-  const [state, setState] = React.useState(defaultValue);
+  const [state, setState] = useState(defaultValue);
 
   const toggle = (
     settingValue: boolean | React.MouseEvent<HTMLButtonElement, MouseEvent>,
