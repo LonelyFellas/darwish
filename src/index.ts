@@ -12,6 +12,7 @@ import useCookie from './hooks/useCookie';
 import useDisplayDevError from './hooks/useDisplayDevError';
 import useHover from './hooks/useHover';
 import useImmer from './hooks/useImmer';
+import useImmerReducer from './hooks/useImmerReducer';
 import useKey from './hooks/useKey';
 import useList from './hooks/useList';
 import useSet from './hooks/useSet';
@@ -88,6 +89,7 @@ const Darwish = {
   deepEqual,
   List,
   useImmer,
+  useImmerReducer,
   useSyncState,
   useDisplayDevError,
   useList,
@@ -135,6 +137,7 @@ export {
   useDisplayDevError,
   useHover,
   useImmer,
+  useImmerReducer,
   useKey,
   useList,
   useSet,
