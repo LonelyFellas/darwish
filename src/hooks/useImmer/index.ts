@@ -1,23 +1,20 @@
-import { Draft, freeze, produce } from 'immer';
+import { freeze, produce } from 'immer';
 import { useCallback, useState } from 'react';
 
-export type DraftFunction<T> = (draft: Draft<T>) => void;
-export type Updater<T> = (arg: T | DraftFunction<T>) => void;
-export type ImmerHooks<T> = [T, Updater<T>];
-export function useImmer<T>(initialValue: T | (() => T)): ImmerHooks<T>;
-export default function useImmer<T>(initialValue: T) {
+export function useImmer<S = any>(initialValue: S | (() => S)): ImmerHook<S>;
+
+export default function useImmer(initialValue: any) {
   const [val, updateValue] = useState(() =>
     freeze(
       typeof initialValue === 'function' ? initialValue() : initialValue,
       true,
     ),
   );
-
   return [
     val,
-    useCallback((updater: Updater<typeof val>) => {
-      if (typeof initialValue === 'function') updateValue(produce(updater));
-      else updateValue(produce(updater));
+    useCallback((updater: any) => {
+      if (typeof updater === 'function') updateValue(produce(updater));
+      else updateValue(freeze(updater));
     }, []),
   ];
 }

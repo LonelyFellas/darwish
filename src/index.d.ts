@@ -53,7 +53,6 @@ import Selection from './components/Selection';
 /**
  * hooks
  */
-import useImmer from './hooks/useImmer';
 /**
  * utils
  */
@@ -89,7 +88,24 @@ declare const Darwish: {
   typeOfData: (value: unknown) => Darwish.AnyType;
   deepEqual: <T>(lfs: T, rfs: T) => boolean;
   List: Darwish.TList;
-  useImmer: typeof useImmer;
+  useImmer: <S = any>(initialValue: S | (() => S)) => ImmerHook<S>;
+  useImmerReducer: {
+    <S, A, I>(
+      reducer: ImmerReducer<S, A>,
+      initializerArg: S & I,
+      initializer: (arg: S & I) => S,
+    ): [S, Dispatch<A>];
+    <S, A, I>(
+      reducer: ImmerReducer<S, A>,
+      initializerArg: I,
+      initializer: (arg: I) => S,
+    ): [S, Dispatch<A>];
+    <S, A>(
+      reducer: ImmerReducer<S, A>,
+      initialState: S,
+      initializer?: undefined,
+    ): [S, Dispatch<A>];
+  };
   useSyncState: <T_2 extends object>(initialValue: T_2) => any;
   useDisplayDevError: <T_3>(
     errorText?: T_3 | undefined,
@@ -136,11 +152,10 @@ declare const Darwish: {
   useSetState: <T_7 extends Record<any, any> | (() => Record<any, any>)>(
     initialValue: T_7,
   ) => readonly [
-    Record<any, any>,
+    T_7,
     (updateValue: Partial<T_7> | ((args: T_7) => Partial<T_7>)) => void,
   ];
 };
-
 /**
  * 全局
  */
@@ -174,6 +189,14 @@ declare global {
     setLeft: () => void;
     setRight: () => void;
   }
+  type DraftFunction<S> = (draft: Draft<S>) => void;
+  type Updater<S> = (arg: S | DraftFunction<S>) => void;
+  type ImmerHook<S> = [S, Updater<S>];
+  type ImmerReducer<S, A> = (
+    draftState: Draft<S>,
+    action: A,
+  ) => void | (S extends undefined ? typeof nothing : S);
+  type Reducer<S = any, A = any> = ImmerReducer<S, A>;
 }
 
 export default Darwish;
