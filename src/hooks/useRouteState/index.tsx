@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import useUpdate from '../useUpdate';
 
-function useRouteState() {
+export default function useRouteState() {
   const updated = useUpdate();
   const pushUrlParam = (key: string, value: any) => {
     const url = new URL(window.location.href);

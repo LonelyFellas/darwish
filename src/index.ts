@@ -15,6 +15,7 @@ import useImmer from './hooks/useImmer';
 import useImmerReducer from './hooks/useImmerReducer';
 import useKey from './hooks/useKey';
 import useList from './hooks/useList';
+import useRouteState from './hooks/useRouteState';
 import useSet from './hooks/useSet';
 import useSetState from './hooks/useSetState';
 import useSyncState from './hooks/useSyncState';
@@ -103,6 +104,7 @@ const Darwish = {
   useHover,
   useSet,
   useSetState,
+  useRouteState,
 };
 export {
   IteratorViews,
@@ -140,6 +142,7 @@ export {
   useImmerReducer,
   useKey,
   useList,
+  useRouteState,
   useSet,
   useSetState,
   useSyncState,

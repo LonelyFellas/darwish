@@ -155,6 +155,10 @@ declare const Darwish: {
     T_7,
     (updateValue: Partial<T_7> | ((args: T_7) => Partial<T_7>)) => void,
   ];
+  useRouteState: () => {
+    pushUrlParam: (key: string, value: any) => void;
+    getUrlParam: (key: string) => any;
+  };
 };
 /**
  * 全局
