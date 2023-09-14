@@ -48,7 +48,6 @@ declare namespace Darwish {
 /**
  * Components
  */
-import IteratorViews from './components/IteratorViews';
 import Selection from './components/Selection';
 /**
  * hooks
@@ -60,7 +59,28 @@ import cloneDeep from './utils/cloneDeep';
 import isFilterUselessKeyValue from './utils/filterUselessKeyValue';
 
 declare const Darwish: {
-  IteratorViews: typeof IteratorViews;
+  IteratorViews: {
+    (props: {
+      items: any[] | number;
+      children?:
+        | JSX.Element
+        | ((item: any, index: number) => JSX.Element)
+        | null;
+    }): JSX.Element;
+    ({ props: IteratorViewsProps }): JSX.Element;
+  };
+  If: FC<
+    PropsWithChildren<{
+      condition: boolean;
+      render?: (() => JSX.Element) | undefined;
+    }>
+  >;
+  Switch: {
+    (props: PropsWithChildren<{ strict?: boolean }>): JSX.Element;
+    (props: PropsWithChildren<SwitchProps>): JSX.Element;
+  };
+  HighlightedText: FC<PropsWithChildren<HighlightedTextProps>>;
+
   Selection: typeof Selection;
   cloneDeep: typeof cloneDeep;
   getQueryParams: (URL: string) => string;
@@ -201,6 +221,28 @@ declare global {
     action: A,
   ) => void | (S extends undefined ? typeof nothing : S);
   type Reducer<S = any, A = any> = ImmerReducer<S, A>;
+  interface IteratorViewsProps
+    extends Omit<
+      React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
+      'children'
+    > {
+    items: any[] | number;
+    children?: JSX.Element | ((item: any, index: number) => JSX.Element) | null;
+    label?: Darwish.ElementLabel;
+  }
+  interface SwitchProps
+    extends React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLElement>,
+      HTMLElement
+    > {
+    strict?: boolean;
+    label?: keyof JSX.IntrinsicElements;
+  }
+  interface HighlightedTextProps {
+    text?: string;
+    keywords?: string;
+    color?: string;
+  }
 }
 
 export default Darwish;

@@ -1,21 +1,20 @@
-import React, { Fragment, createElement } from 'react';
+import { Fragment, createElement } from 'react';
+
+export function IteratorViews(props: {
+  items: any[] | number;
+  children?: JSX.Element | ((item: any, index: number) => JSX.Element) | null;
+}): JSX.Element;
+export function IteratorViews(props: IteratorViewsProps): JSX.Element;
 /**
  *
  * @param param0
  * @returns
  */
-export default function IteratorViews({
-  items,
-  children,
-  label,
-}: {
-  items: any[] | number;
-  children?: JSX.Element | ((item: any, index: number) => JSX.Element) | null;
-  label?: Darwish.ElementLabel;
-}) {
+export default function IteratorViews(props: IteratorViewsProps) {
+  const { items, children, label, ...restProps } = props;
   return createElement(
     label || Fragment,
-    {},
+    restProps === undefined ? {} : { ...restProps },
     typeof items === 'number'
       ? Array.from({ length: items }, (v, i) => (
           <Fragment key={i}>

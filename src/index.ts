@@ -1,8 +1,11 @@
 /**
  * Components
  */
+import HighlightedText from './components/HighlightedText';
+import If from './components/If';
 import IteratorViews from './components/IteratorViews';
 import Selection from './components/Selection';
+import Switch from './components/Switch';
 
 /**
  * hooks
@@ -64,6 +67,9 @@ import typeOfData from './utils/typeOfData';
 const Darwish = {
   IteratorViews,
   Selection,
+  If,
+  HighlightedText,
+  Switch,
   cloneDeep,
   getQueryParams,
   isBlanks,
@@ -107,9 +113,12 @@ const Darwish = {
   useRouteState,
 };
 export {
+  HighlightedText,
+  If,
   IteratorViews,
   List,
   Selection,
+  Switch,
   cloneDeep,
   deepEqual,
   dlv,
