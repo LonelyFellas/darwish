@@ -2,7 +2,7 @@ export const isPromise = (value: unknown): value is Promise<any> =>
   Promise.resolve(value) instanceof Promise;
 export const isDate = (value: unknown): value is Date =>
   objProtoCallType(value, 'date');
-export const isObject = (value: unknown): value is Record<any, any> =>
+export const isObject = (value: unknown): value is Record<PropertyKey, any> =>
   objProtoCallType(value, 'object');
 export const isSet = (value: unknown): value is Set<any> =>
   objProtoCallType(value, 'set');

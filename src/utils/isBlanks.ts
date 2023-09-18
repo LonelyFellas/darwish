@@ -1,15 +1,16 @@
-import { isObject } from './isTypings';
-
+import { isArray, isDate, isMap, isObject, isSet } from './isTypings';
+type Nullable = undefined | null | never | Darwish.EmptyObject;
 /**
  *
  * @param data 支持所有基本类型,还有[],{},Set,Map,Date的判断，true则数据空或者数据错误
  */
-const isBlanks: <T>(data: T) => boolean = (data) => {
+type CustomNullable<T> = Extract<T, Nullable> | Extract<Nullable, T>;
+export default function isBlanks<T>(data: T): data is CustomNullable<T> {
   if (data === Infinity) {
     return !!data;
   }
   // 判断数组类型
-  if (Array.isArray(data)) {
+  if (isArray(data)) {
     return !data.length;
   }
   // 判断Object类型
@@ -24,15 +25,13 @@ const isBlanks: <T>(data: T) => boolean = (data) => {
   }
 
   // 判断空Set和空Map
-  if (data instanceof Set || data instanceof Map) {
+  if (isMap(data) || isSet(data)) {
     return data.size === 0;
   }
 
   // 判断错误时间
-  if (data instanceof Date) {
+  if (isDate(data)) {
     return Number.isNaN(data.getTime());
   }
-  return !data;
-};
-
-export default isBlanks;
+  return !Boolean(data);
+}

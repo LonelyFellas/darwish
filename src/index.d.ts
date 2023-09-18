@@ -31,6 +31,7 @@ declare namespace Darwish {
   export type ElementChangeEvent<T extends ElementLabel> = React.ChangeEvent<
     ElementRef<T>
   >;
+  export type EmptyObject = Record<PropertyKey, never>;
   export type TList = CList;
   export type AnyType =
     | 'null'
@@ -59,6 +60,12 @@ import cloneDeep from './utils/cloneDeep';
 import isFilterUselessKeyValue from './utils/filterUselessKeyValue';
 
 declare const Darwish: {
+  ElementLabel: Darwish.ElementLabel;
+  ElementRef: Darwish.ElementRef<Darwish.ElementLabel>;
+  ElementClickEvent: Darwish.ElementClickEvent<Darwish.ElementLabel>;
+  ElementChangeEvent: Darwish.ElementChangeEvent<Darwish.ElementLabel>;
+  EmptyObject: Darwish.EmptyObject;
+  AnyType: Darwish.AnyType;
   IteratorViews: {
     (props: {
       items: any[] | number;
@@ -90,6 +97,7 @@ declare const Darwish: {
   isFilterUselessKeyValue: typeof isFilterUselessKeyValue;
   shuffleArray: <T_1>(arr: T_1[]) => T_1[];
   isArray: (value: unknown) => value is any[];
+  isDate: (value: unknown) => value is Date;
   isBoolean: (value: unknown) => value is boolean;
   isFunction: (value: unknown) => value is Function;
   isMap: (value: unknown) => value is Map<any, any>;
