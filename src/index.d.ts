@@ -31,6 +31,7 @@ declare namespace Darwish {
   export type ElementChangeEvent<T extends ElementLabel> = React.ChangeEvent<
     ElementRef<T>
   >;
+  export type ElementHTMLProps<T extends ElementLabel> = JSX.IntrinsicElements[T];
   export type EmptyObject = Record<PropertyKey, never>;
   export type TList = CList;
   export type AnyType =
@@ -187,6 +188,7 @@ declare const Darwish: {
   useRouteStates: <T_9 extends Record<any, any>>(obj: T_9) => readonly [T_9, (value: Partial<T_9>) => void]
   useSessionStorage: (key: string) => readonly [any, (value: unknown) => void, () => void]
   useLocalStorage: (key: string) => readonly [any, (value: unknown) => void, () => void]
+  useQrCode: (url: string) => (props: Darwish.ElementHTMLProps<'canvas'>) => JSX.Element
 };
 /**
  * 全局

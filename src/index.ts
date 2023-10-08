@@ -18,7 +18,7 @@ import useImmer from './hooks/useImmer';
 import useImmerReducer from './hooks/useImmerReducer';
 import useKey from './hooks/useKey';
 import useList from './hooks/useList';
-import { useRouteState, useRouteStates} from './hooks/useRouteState';
+import { useRouteState, useRouteStates } from './hooks/useRouteState';
 import useSet from './hooks/useSet';
 import useSetState from './hooks/useSetState';
 import useSyncState from './hooks/useSyncState';
@@ -28,6 +28,7 @@ import useUpdate from './hooks/useUpdate';
 import useUpdateEffect from './hooks/useUpdateEffect';
 import useSessionStorage from './hooks/useStorage/useSessionStorage';
 import useLocalStorage from './hooks/useStorage/useLocalStorage';
+import useQrCode from './hooks/useQrCode';
 /**
  * utils
  */
@@ -115,7 +116,8 @@ const Darwish = {
   useRouteState,
   useRouteStates,
   useSessionStorage,
-  useLocalStorage
+  useLocalStorage,
+  useQrCode,
 };
 export {
   HighlightedText,
@@ -166,7 +168,8 @@ export {
   useUpdate,
   useUpdateEffect,
   useLocalStorage,
-  useSessionStorage
+  useSessionStorage,
+  useQrCode
 };
 export type {
   AnyType,

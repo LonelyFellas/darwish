@@ -20,6 +20,9 @@
       ]
     }
   },
+  "exclude": [
+    "./src/index.ts"
+  ],
   "include": [
     ".dumirc.ts",
     "src/**/*"

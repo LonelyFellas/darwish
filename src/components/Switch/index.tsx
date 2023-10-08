@@ -45,5 +45,5 @@ interface CaseProps {
   condition?: boolean;
 }
 const Case: FC<PropsWithChildren<{ condition?: boolean }>> = ({ children }) =>
-  children;
-const Default: FC<PropsWithChildren<{}>> = ({ children }) => children;
+  <>{children}</>;
+const Default: FC<PropsWithChildren<{}>> = ({ children }) => <>{children}</>;; 
