@@ -1,6 +1,6 @@
 # useSessionStorage
 
-浏览器session储存的增删改的操作，进行了多层封装
+浏览器 Session 储存的增删改的操作，进行了多层封装
 
 ```jsx
 import { useSessionStorage } from "darwish";
