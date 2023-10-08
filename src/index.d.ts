@@ -183,10 +183,10 @@ declare const Darwish: {
     T_7,
     (updateValue: Partial<T_7> | ((args: T_7) => Partial<T_7>)) => void,
   ];
-  useRouteState: () => {
-    pushUrlParam: (key: string, value: any) => void;
-    getUrlParam: (key: string) => any;
-  };
+  useRouteState: <T_8>(key: string, type: T_8) => readonly [T_8, (value: T_8) => void] 
+  useRouteStates: <T_9 extends Record<any, any>>(obj: T_9) => readonly [T_9, (value: Partial<T_9>) => void]
+  useSessionStorage: (key: string) => readonly [any, (value: unknown) => void, () => void]
+  useLocalStorage: (key: string) => readonly [any, (value: unknown) => void, () => void]
 };
 /**
  * 全局

@@ -18,7 +18,7 @@ import useImmer from './hooks/useImmer';
 import useImmerReducer from './hooks/useImmerReducer';
 import useKey from './hooks/useKey';
 import useList from './hooks/useList';
-import useRouteState from './hooks/useRouteState';
+import { useRouteState, useRouteStates} from './hooks/useRouteState';
 import useSet from './hooks/useSet';
 import useSetState from './hooks/useSetState';
 import useSyncState from './hooks/useSyncState';
@@ -26,6 +26,8 @@ import useTextSelection from './hooks/useTextSelection';
 import useToggle from './hooks/useToggle';
 import useUpdate from './hooks/useUpdate';
 import useUpdateEffect from './hooks/useUpdateEffect';
+import useSessionStorage from './hooks/useStorage/useSessionStorage';
+import useLocalStorage from './hooks/useStorage/useLocalStorage';
 /**
  * utils
  */
@@ -111,6 +113,9 @@ const Darwish = {
   useSet,
   useSetState,
   useRouteState,
+  useRouteStates,
+  useSessionStorage,
+  useLocalStorage
 };
 export {
   HighlightedText,
@@ -152,6 +157,7 @@ export {
   useKey,
   useList,
   useRouteState,
+  useRouteStates,
   useSet,
   useSetState,
   useSyncState,
@@ -159,6 +165,8 @@ export {
   useToggle,
   useUpdate,
   useUpdateEffect,
+  useLocalStorage,
+  useSessionStorage
 };
 export type {
   AnyType,
