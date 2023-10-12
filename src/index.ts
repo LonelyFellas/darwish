@@ -43,7 +43,7 @@ import type {
   ElementLabel,
   ElementRef,
   TList,
-} from './index.d';
+} from './global';
 import cloneDeep from './utils/cloneDeep';
 import deepEqual from './utils/deepEqual';
 import dlv from './utils/dlv';

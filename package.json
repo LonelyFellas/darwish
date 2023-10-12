@@ -4,7 +4,8 @@
   "description": "A react library developed with dumi",
   "license": "MIT",
   "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/global.d.ts",
+  "typings": "dist/global.d.ts",
   "files": [
     "dist"
   ],

@@ -22,7 +22,6 @@
   },
   "exclude": [
     "./src/index.ts",
-    "./src/index.d.ts"
   ],
   "include": [
     ".dumirc.ts",
