@@ -17,18 +17,22 @@ import useHover from './hooks/useHover';
 import useImmer from './hooks/useImmer';
 import useImmerReducer from './hooks/useImmerReducer';
 import useKey from './hooks/useKey';
+import useLatest from './hooks/useLatest';
 import useList from './hooks/useList';
+import useMount from './hooks/useMount';
+import usePrevious from './hooks/usePrevious';
+import useQrCode from './hooks/useQrCode';
 import { useRouteState, useRouteStates } from './hooks/useRouteState';
 import useSet from './hooks/useSet';
 import useSetState from './hooks/useSetState';
+import useLocalStorage from './hooks/useStorage/useLocalStorage';
+import useSessionStorage from './hooks/useStorage/useSessionStorage';
 import useSyncState from './hooks/useSyncState';
 import useTextSelection from './hooks/useTextSelection';
 import useToggle from './hooks/useToggle';
+import useUnmount from './hooks/useUnMount';
 import useUpdate from './hooks/useUpdate';
 import useUpdateEffect from './hooks/useUpdateEffect';
-import useSessionStorage from './hooks/useStorage/useSessionStorage';
-import useLocalStorage from './hooks/useStorage/useLocalStorage';
-import useQrCode from './hooks/useQrCode';
 /**
  * utils
  */
@@ -47,6 +51,7 @@ import isFilterUselessKeyValue from './utils/filterUselessKeyValue';
 import getQueryParams from './utils/getQueryParams';
 import isBlanks from './utils/isBlanks';
 import isBrowser from './utils/isBrowser';
+import isDev from './utils/isDev';
 import isEmailValid from './utils/isEmailValid';
 import {
   isArray,
@@ -94,6 +99,7 @@ const Darwish = {
   isSet,
   isString,
   isUndef,
+  isDev,
   dlv,
   typeOfData,
   deepEqual,
@@ -118,6 +124,10 @@ const Darwish = {
   useSessionStorage,
   useLocalStorage,
   useQrCode,
+  usePrevious,
+  useLatest,
+  useMount,
+  useUnmount,
 };
 export {
   HighlightedText,
@@ -136,6 +146,7 @@ export {
   isBoolean,
   isBrowser,
   isDate,
+  isDev,
   isEmailValid,
   isFilterUselessKeyValue,
   isFunction,
@@ -157,19 +168,23 @@ export {
   useImmer,
   useImmerReducer,
   useKey,
+  useLatest,
   useList,
+  useLocalStorage,
+  useMount,
+  usePrevious,
+  useQrCode,
   useRouteState,
   useRouteStates,
+  useSessionStorage,
   useSet,
   useSetState,
   useSyncState,
   useTextSelection,
   useToggle,
+  useUnmount,
   useUpdate,
   useUpdateEffect,
-  useLocalStorage,
-  useSessionStorage,
-  useQrCode
 };
 export type {
   AnyType,

@@ -31,7 +31,8 @@ declare namespace Darwish {
   export type ElementChangeEvent<T extends ElementLabel> = React.ChangeEvent<
     ElementRef<T>
   >;
-  export type ElementHTMLProps<T extends ElementLabel> = JSX.IntrinsicElements[T];
+  export type ElementHTMLProps<T extends ElementLabel> =
+    JSX.IntrinsicElements[T];
   export type EmptyObject = Record<PropertyKey, never>;
   export type TList = CList;
   export type AnyType =
@@ -107,6 +108,7 @@ declare const Darwish: {
   isSet: (value: unknown) => value is Set<any>;
   isString: (value: unknown) => value is string;
   isUndef: (value: unknown) => value is undefined;
+  isDev: boolean;
   dlv: <T_4 extends unknown>(
     obj: T_4,
     key?: string,
@@ -184,11 +186,26 @@ declare const Darwish: {
     T_7,
     (updateValue: Partial<T_7> | ((args: T_7) => Partial<T_7>)) => void,
   ];
-  useRouteState: <T_8>(key: string, type: T_8) => readonly [T_8, (value: T_8) => void] 
-  useRouteStates: <T_9 extends Record<any, any>>(obj: T_9) => readonly [T_9, (value: Partial<T_9>) => void]
-  useSessionStorage: (key: string) => readonly [any, (value: unknown) => void, () => void]
-  useLocalStorage: (key: string) => readonly [any, (value: unknown) => void, () => void]
-  useQrCode: (url: string) => (props: Darwish.ElementHTMLProps<'canvas'>) => JSX.Element
+  useRouteState: <T_8>(
+    key: string,
+    type: T_8,
+  ) => readonly [T_8, (value: T_8) => void];
+  useRouteStates: <T_9 extends Record<any, any>>(
+    obj: T_9,
+  ) => readonly [T_9, (value: Partial<T_9>) => void];
+  useSessionStorage: (
+    key: string,
+  ) => readonly [any, (value: unknown) => void, () => void];
+  useLocalStorage: (
+    key: string,
+  ) => readonly [any, (value: unknown) => void, () => void];
+  useQrCode: (
+    url: string,
+  ) => (props: Darwish.ElementHTMLProps<'canvas'>) => JSX.Element;
+  usePrevious: <T>(state: T) => T | undefined;
+  useLatest: <T>(value: T) => React.MutableRefObject<T>;
+  useMount: (fn: () => void) => void;
+  useUnmount: (fn: () => void) => void;
 };
 /**
  * 全局
