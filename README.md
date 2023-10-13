@@ -11,7 +11,7 @@ A react library developed with dumi
 
 ## Options
 
-具体可以去源码
+具体可以去看源码
 
 ## Development
 

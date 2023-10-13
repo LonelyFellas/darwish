@@ -70,6 +70,7 @@ import {
   isUndef,
 } from './utils/isTypings';
 import List from './utils/list';
+import { objAssign, objCuter } from './utils/objOperation';
 import shuffleArray from './utils/shuffleArray';
 import typeOfData from './utils/typeOfData';
 const Darwish = {
@@ -100,6 +101,8 @@ const Darwish = {
   isString,
   isUndef,
   isDev,
+  objAssign,
+  objCuter,
   dlv,
   typeOfData,
   deepEqual,
@@ -159,6 +162,8 @@ export {
   isString,
   isSymbol,
   isUndef,
+  objAssign,
+  objCuter,
   shuffleArray,
   typeOfData,
   useBoolean,

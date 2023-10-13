@@ -7,3 +7,6 @@ node_modules
 # edit
 .vscode
 .idea
+
+# error
+yarn-error.log

@@ -118,6 +118,8 @@ declare const Darwish: {
   ) => unknown;
   typeOfData: (value: unknown) => Darwish.AnyType;
   deepEqual: <T>(lfs: T, rfs: T) => boolean;
+  objAssign: <T, U, K extends keyof T & keyof U>(a: T, b: U, keys: K[]) => void;
+  objCuter: <T, U extends keyof T>(recordObj: T, keyArr: U[]) => Pick<T, U>;
   List: Darwish.TList;
   useImmer: <S = any>(initialValue: S | (() => S)) => ImmerHook<S>;
   useImmerReducer: {
