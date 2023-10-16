@@ -13,6 +13,7 @@ import Switch from './components/Switch';
 import useBoolean from './hooks/useBoolean';
 import useCookie from './hooks/useCookie';
 import useDisplayDevError from './hooks/useDisplayDevError';
+import useEventListener from './hooks/useEventListener';
 import useHover from './hooks/useHover';
 import useImmer from './hooks/useImmer';
 import useImmerReducer from './hooks/useImmerReducer';
@@ -131,6 +132,7 @@ const Darwish = {
   useLatest,
   useMount,
   useUnmount,
+  useEventListener,
 };
 export {
   HighlightedText,
@@ -169,6 +171,7 @@ export {
   useBoolean,
   useCookie,
   useDisplayDevError,
+  useEventListener,
   useHover,
   useImmer,
   useImmerReducer,

@@ -208,6 +208,20 @@ declare const Darwish: {
   useLatest: <T>(value: T) => React.MutableRefObject<T>;
   useMount: (fn: () => void) => void;
   useUnmount: (fn: () => void) => void;
+  useEventListener: {
+    <K extends keyof HTMLElementEventMap, U extends unknown>(
+      name: React.RefObject<U>,
+      event: K,
+      callback: (this: U, ev: HTMLElementEventMap[K]) => any,
+      options?: boolean | AddEventListenerOptions,
+    ): void;
+    <K extends keyof WindowEventMap>(
+      name: Window,
+      event: K,
+      callback: (this: Window, ev: WindowEventMap[K]) => any,
+      option?: boolean | AddEventListenerOptions,
+    ): void;
+  };
 };
 /**
  * 全局
