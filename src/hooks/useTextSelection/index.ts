@@ -5,7 +5,7 @@ export default function useTextSelection() {
   const [text, setText] = useState('');
 
   const handleMouseUp = () => {
-    if (isBrowser() && window && window.getSelection) {
+    if (isBrowser && window && window.getSelection) {
       const selection = window.getSelection();
       if (selection && selection.toString()) {
         setText(selection.toString());

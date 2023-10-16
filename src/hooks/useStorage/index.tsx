@@ -7,18 +7,20 @@ export default function useStorage(type: Storage, key: string) {
     try {
       return JSON.parse(window[type].getItem(key) || '')
     } catch {
-      return window[type as Storage].getItem(key) || '' 
+      return window[type as Storage].getItem(key) || ''
     }
   })
 
   const updateStorage = (value: unknown) => {
-     window[type].setItem(key, JSON.stringify(value));
-     setStorage(value);
+    window[type].setItem(key, JSON.stringify(value));
+    setStorage(value);
   }
+
   const removeStorage = () => {
     window[type].removeItem(key);
     storage && setStorage(null);
   }
+
 
   return [storage, updateStorage, removeStorage] as const;
 }

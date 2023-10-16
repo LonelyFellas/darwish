@@ -94,7 +94,7 @@ declare const Darwish: {
   cloneDeep: typeof cloneDeep;
   getQueryParams: (URL: string) => string;
   isBlanks: <T>(data: T) => boolean;
-  isBrowser: () => boolean;
+  isBrowser: boolean;
   isEmailValid: (address: string) => boolean;
   isFilterUselessKeyValue: typeof isFilterUselessKeyValue;
   shuffleArray: <T_1>(arr: T_1[]) => T_1[];
