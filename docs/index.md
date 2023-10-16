@@ -7,6 +7,8 @@ hero:
       link: /components
     - text: Hooks List
       link: /hooks
+    - text: GitHub
+      link: https://github.com/LonelyFellas/darwish
 features:
   - title: Component
     emoji: 💎
