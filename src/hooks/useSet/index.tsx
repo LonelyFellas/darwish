@@ -14,7 +14,7 @@ export default function useSet<T>(initialValue: Array<T> | Set<T>) {
     (hasValue: T) => {
       return state.has(hasValue);
     },
-    [initialValue],
+    [initialValue, state],
   );
 
   const stableActions = useMemo(() => {
@@ -36,7 +36,7 @@ export default function useSet<T>(initialValue: Array<T> | Set<T>) {
         setState(init);
       },
     };
-  }, [setState]);
+  }, [setState, state]);
 
   const utils = {
     has,

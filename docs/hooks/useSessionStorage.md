@@ -7,7 +7,6 @@ import { useSessionStorage } from 'darwish';
 export default () => {
   const [storage, setStorage, removeStorage] = useSessionStorage('darwish');
 
-  console.log(storage);
   return (
     <div>
       <h1>Session-Storage:{storage}</h1>
