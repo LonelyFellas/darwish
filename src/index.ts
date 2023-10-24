@@ -34,6 +34,7 @@ import useToggle from './hooks/useToggle';
 import useUnmount from './hooks/useUnMount';
 import useUpdate from './hooks/useUpdate';
 import useUpdateEffect from './hooks/useUpdateEffect';
+import usePress from './hooks/usePress';
 /**
  * utils
  */
@@ -133,6 +134,7 @@ const Darwish = {
   useMount,
   useUnmount,
   useEventListener,
+  usePress
 };
 export {
   HighlightedText,
@@ -193,6 +195,7 @@ export {
   useUnmount,
   useUpdate,
   useUpdateEffect,
+  usePress
 };
 export type {
   AnyType,

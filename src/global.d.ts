@@ -29,7 +29,8 @@ declare namespace Darwish {
     MouseEvent
   >;
   export type ElementChangeEvent<T extends ElementLabel> = React.ChangeEvent<
-    ElementRef<T>
+    ElementRef<T>,
+    MouseEvent
   >;
   export type ElementHTMLProps<T extends ElementLabel> =
     JSX.IntrinsicElements[T];
@@ -288,4 +289,5 @@ declare global {
   }
 }
 
+export declare module '*.css';
 export default Darwish;
