@@ -1,4 +1,4 @@
-import { isBrowser } from 'darwish';
+import isBrowser from '../../utils/isBrowser';
 import { useEffect } from 'react';
 /**
  * TODO 缺少文档和注释

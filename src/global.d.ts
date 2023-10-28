@@ -22,8 +22,8 @@ declare namespace Darwish {
       React.HTMLAttributes<unknown>,
       infer A
     >
-      ? A
-      : never;
+    ? A
+    : never;
   export type ElementClickEvent<T extends ElementLabel> = React.MouseEvent<
     ElementRef<T>,
     MouseEvent
@@ -73,9 +73,9 @@ declare const Darwish: {
     (props: {
       items: any[] | number;
       children?:
-        | JSX.Element
-        | ((item: any, index: number) => JSX.Element)
-        | null;
+      | JSX.Element
+      | ((item: any, index: number) => JSX.Element)
+      | null;
     }): JSX.Element;
     ({ props: IteratorViewsProps }): JSX.Element;
   };
@@ -183,7 +183,7 @@ declare const Darwish: {
       has: (hasValue: T_6) => boolean;
     },
   ];
-  useSetState: <T_7 extends Record<any, any> | (() => Record<any, any>)>(
+  useSetState: <T_7 extends Record<any, any> | (() => Record<any, any>) >(
     initialValue: T_7,
   ) => readonly [
     T_7,
@@ -223,6 +223,7 @@ declare const Darwish: {
       option?: boolean | AddEventListenerOptions,
     ): void;
   };
+  usePress: (pressedView: JSX.Element | (() => JSX.Element), callback: () => void) => () => React.FunctionComponentElement<any>
 };
 /**
  * 全局

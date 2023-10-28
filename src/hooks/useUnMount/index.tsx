@@ -1,4 +1,6 @@
-import { isFunction, isDev, useLatest } from "darwish";
+import { isFunction } from "../../utils/isTypings";
+import useLatest from "../useLatest";
+import isDev from "../../utils/isDev";
 import { useEffect } from "react";
 
 export default function useUnmount(fn: () => void) {

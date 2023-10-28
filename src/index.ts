@@ -6,7 +6,7 @@ import If from './components/If';
 import IteratorViews from './components/IteratorViews';
 import Selection from './components/Selection';
 import Switch from './components/Switch';
-
+import Splitter from './components/Splitter';
 /**
  * hooks
  */
@@ -81,6 +81,7 @@ const Darwish = {
   If,
   HighlightedText,
   Switch,
+  Splitter,
   cloneDeep,
   getQueryParams,
   isBlanks,
@@ -143,6 +144,7 @@ export {
   List,
   Selection,
   Switch,
+  Splitter,
   cloneDeep,
   deepEqual,
   dlv,

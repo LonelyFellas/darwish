@@ -3,13 +3,18 @@
 **useBoolean**是对boolean值进行切换
 
 ```jsx
-import { usePress as UsePress } from 'darwish';
+import { useState } from "react";
+import { usePress } from 'darwish';
 
 export default () => {
+  const [pressCount, setPressCount] = useState(0);
+  const element = <h1>Count: {pressCount}</h1>
+  const PressView = usePress(element, () => {
+    setPressCount(prev => prev + 1);
+  });
   return (
     <div>
-      <h1>Hello World</h1>
-      <UsePress />
+      <PressView />
     </div>
   );
 };

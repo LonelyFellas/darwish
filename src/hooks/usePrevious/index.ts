@@ -1,4 +1,4 @@
-import { useUpdateEffect } from 'darwish';
+import useUpdateEffect from '../useUpdateEffect';
 import { useState } from 'react';
 export default function usePrevious<T>(state: T) {
   const [previous, setPrevious] = useState<T | undefined>(undefined);

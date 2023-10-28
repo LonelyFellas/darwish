@@ -1,4 +1,5 @@
-import { isDev, isFunction } from 'darwish';
+import isDev from '../../utils/isDev';
+import { isFunction } from '../../utils/isTypings';
 import { useEffect } from 'react';
 
 export default function useMount(fn: () => void) {
