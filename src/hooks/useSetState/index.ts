@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 export default function useSetState<
-  T extends Record<any, any> | (() => Record<any, any>),
+  T extends Record<PropertyKey, any> | (() => Record<PropertyKey, any>),
 >(initialValue: T) {
   const [state, setState] = useState<T>(initialValue);
 

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+// @ts-ignore
 import style from './index.module.css';
 import Darwish from 'darwish';
 
