@@ -22,15 +22,14 @@ declare namespace Darwish {
       React.HTMLAttributes<unknown>,
       infer A
     >
-    ? A
-    : never;
+      ? A
+      : never;
   export type ElementClickEvent<T extends ElementLabel> = React.MouseEvent<
     ElementRef<T>,
     MouseEvent
   >;
   export type ElementChangeEvent<T extends ElementLabel> = React.ChangeEvent<
-    ElementRef<T>,
-    MouseEvent
+    ElementRef<T>
   >;
   export type ElementHTMLProps<T extends ElementLabel> =
     JSX.IntrinsicElements[T];
@@ -73,9 +72,9 @@ declare const Darwish: {
     (props: {
       items: any[] | number;
       children?:
-      | JSX.Element
-      | ((item: any, index: number) => JSX.Element)
-      | null;
+        | JSX.Element
+        | ((item: any, index: number) => JSX.Element)
+        | null;
     }): JSX.Element;
     ({ props: IteratorViewsProps }): JSX.Element;
   };
@@ -99,6 +98,14 @@ declare const Darwish: {
   isEmailValid: (address: string) => boolean;
   isFilterUselessKeyValue: typeof isFilterUselessKeyValue;
   shuffleArray: <T_1>(arr: T_1[]) => T_1[];
+  uniqueObjectOfArray: <T extends Record<PropertyKey, any>>(
+    dataArray: T[],
+    uniqueId?: keyof T,
+  ) => T[];
+  uniqueObjectOfArrayMap: <T extends Record<PropertyKey, any>>(
+    dataArray: T[],
+    uniqueId?: keyof T,
+  ) => T[];
   isArray: (value: unknown) => value is any[];
   isDate: (value: unknown) => value is Date;
   isBoolean: (value: unknown) => value is boolean;
@@ -150,9 +157,7 @@ declare const Darwish: {
     deps?: React.DependencyList | undefined,
   ) => void;
   useKey: (code: string, callback: () => void) => void;
-  useList: () => <T_5>(
-    initialList: Array<T_5>,
-  ) => [Array<T_5>, IUseListUtil<T_5>];
+  useList: <T>(initialList: T[]) => [T[], IUseListUtil<T>];
   useTextSelection: () => { text: string };
   useBoolean: (defaultValue: boolean) => [boolean, BooleanFn];
   useToggle: {
@@ -183,7 +188,7 @@ declare const Darwish: {
       has: (hasValue: T_6) => boolean;
     },
   ];
-  useSetState: <T_7 extends Record<any, any> | (() => Record<any, any>) >(
+  useSetState: <T_7 extends Record<any, any> | (() => Record<any, any>)>(
     initialValue: T_7,
   ) => readonly [
     T_7,
@@ -223,7 +228,10 @@ declare const Darwish: {
       option?: boolean | AddEventListenerOptions,
     ): void;
   };
-  usePress: (pressedView: JSX.Element | (() => JSX.Element), callback: () => void) => () => React.FunctionComponentElement<any>
+  usePress: (
+    pressedView: JSX.Element | (() => JSX.Element),
+    callback: () => void,
+  ) => () => React.FunctionComponentElement<any>;
 };
 /**
  * 全局

@@ -1,5 +1,5 @@
 import { useMemo, useRef } from 'react';
-import { isFunction } from '../../utils/isTypings';
+import { isFunction } from '../../utils/is/isTypings';
 import useUpdate from '../useUpdate';
 
 const resolveHooksState = <T extends Array<unknown>>(

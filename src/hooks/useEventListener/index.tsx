@@ -1,8 +1,6 @@
-import isBrowser from '../../utils/isBrowser';
 import { useEffect } from 'react';
-/**
- * TODO 缺少文档和注释
- */
+import isBrowser from '../../utils/is/isBrowser';
+
 /**
  *
  * @param name 111

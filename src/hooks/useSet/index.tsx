@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { isArray } from '../../utils/isTypings';
+import { isArray } from '../../utils/is/isTypings';
 
 export default function useSet<T>(initialValue: Array<T> | Set<T>) {
   const init = useCallback(() => {

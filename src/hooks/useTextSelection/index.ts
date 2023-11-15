@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import isBrowser from '../../utils/isBrowser';
+import isBrowser from '../../utils/is/isBrowser';
 
 export default function useTextSelection() {
   const [text, setText] = useState('');

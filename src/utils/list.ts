@@ -1,5 +1,5 @@
 import deepEqual from './deepEqual';
-import { isArray, isObject } from './isTypings';
+import { isArray, isObject } from './is/isTypings';
 export default class ListObj {
   dataSource: Array<unknown> = [];
   constructor() {}

@@ -1,3 +1,4 @@
+import { isValidElement } from 'react';
 export const isPromise = (value: unknown): value is Promise<any> =>
   Promise.resolve(value) instanceof Promise;
 export const isDate = (value: unknown): value is Date =>
@@ -25,5 +26,7 @@ export const isNumber = (value: unknown): value is number =>
   typeof value === 'number';
 export const isUndef = (value: unknown): value is undefined =>
   typeof value === 'undefined';
+export const isJSX = (value: unknown): value is JSX.Element =>
+  isValidElement(value);
 const objProtoCallType = <T>(value: unknown, type: T) =>
   Object.prototype.toString.call(value).slice(8, -1).toLowerCase() === type;

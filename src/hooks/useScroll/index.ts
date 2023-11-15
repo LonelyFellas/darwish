@@ -1,23 +1,28 @@
-import Darwish, { useSetState } from "darwish";
-import { useEffect } from "react";
+import Darwish, { useSetState } from 'darwish';
+
+type ScrollHTMLElementEventMap = HTMLElementEventMap['scroll'];
+interface OnScrollEvent extends Omit<ScrollHTMLElementEventMap, 'target'> {
+  target: Pick<ScrollHTMLElementEventMap, 'target'> & {
+    scrollLeft: number;
+    scrollTop: number;
+  };
+}
 
 const useScroll = (ref: React.MutableRefObject<HTMLDivElement>) => {
   const [page, setPage] = useSetState({
     x: 0,
-    y: 0
-  })
-  const onScroll = (event: Darwish.ElementChangeEvent<'div'>) => {
-    setPage({
-      x: event.target.scrollLeft,
-      y: event.target.scrollTop
-    })
-  }
-  Darwish.useEventListener(ref, 'scroll', onScroll)
-  useEffect(() => {
+    y: 0,
+  });
 
-    if (ref.current) {
+  const onScroll = (event: OnScrollEvent) => {
+    if (event && event.target) {
+      setPage({
+        x: event.target.scrollLeft,
+        y: event.target.scrollTop,
+      });
     }
-  }, [ref])
-  return [page, 3]
-}
+  };
+  Darwish.useEventListener(ref, 'scroll', onScroll as any);
+  return [page, 3];
+};
 export default useScroll;

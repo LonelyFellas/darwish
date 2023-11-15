@@ -1,4 +1,4 @@
-import { isDate, isMap, isObject, isSet } from './isTypings';
+import { isDate, isMap, isObject, isSet } from './is/isTypings';
 import typeOfData from './typeOfData';
 
 export function deepEqualByArray<T extends any[]>(lfs: T[], rfs: T[]) {
