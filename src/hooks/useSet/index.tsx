@@ -28,9 +28,11 @@ export default function useSet<T>(initialValue: Array<T> | Set<T>) {
         );
       },
       toggle: (toggleValue: T) => {
-        has(toggleValue)
-          ? stableActions.remove(toggleValue)
-          : stableActions.add(toggleValue);
+        if (has(toggleValue)) {
+          stableActions.remove(toggleValue);
+        } else {
+          stableActions.add(toggleValue);
+        }
       },
       reset: () => {
         setState(init);

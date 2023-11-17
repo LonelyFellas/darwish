@@ -52,13 +52,19 @@ function useList<T>(initialList: Array<T>): [Array<T>, IUseListUtil<T>] {
         const index = list.current.findIndex((item) =>
           predicate(item, updateItem),
         );
-        index >= 0 && utils.updateAt(1, updateItem);
+        if (index >= 0) {
+          utils.updateAt(1, updateItem);
+        }
       },
       upsert: (predicate: (a: T, b: T) => boolean, updateItem: T) => {
         const index = list.current.findIndex((item) =>
           predicate(item, updateItem),
         );
-        index >= 0 ? utils.updateAt(1, updateItem) : utils.push(updateItem);
+        if (index >= 0) {
+          utils.updateAt(1, updateItem);
+        } else {
+          utils.push(updateItem);
+        }
       },
       sort: (compareFn: (a: T, b: T) => number) => {
         utils.set([...list.current].sort(compareFn));

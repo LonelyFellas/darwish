@@ -4,29 +4,31 @@ let NumberParam: number | null | undefined = Infinity;
 let StringParam: string | null | undefined = '';
 let BooleanParam: boolean | null | undefined = undefined;
 let ArrayParam: number[] | string[] | null | undefined = [];
-let ObjectParam: Record<PropertyKey, any> | null | undefined =
-  undefined;
+
 export function useRouteStates<T extends Record<any, any>>(obj: T) {
   const [state, setState] = useState<T>(obj);
 
   useLayoutEffect(() => {
     const handlePopstate = () => {
-      const searchParams = new URLSearchParams(window.location.search)
+      const searchParams = new URLSearchParams(window.location.search);
       for (const [key, type] of Object.entries(obj)) {
-        const paramValue = type === ArrayParam ? searchParams.getAll(key) : searchParams.get(key);
-        setState(prev => {
+        const paramValue =
+          type === ArrayParam
+            ? searchParams.getAll(key)
+            : searchParams.get(key);
+        setState((prev) => {
           return {
             ...prev,
-            [key]: paramValue
-          }
-        })
+            [key]: paramValue,
+          };
+        });
       }
-    }
-    window.addEventListener('popstate', handlePopstate)
+    };
+    window.addEventListener('popstate', handlePopstate);
     return () => {
       window.removeEventListener('popstate', handlePopstate);
-    }
-  }, [])
+    };
+  }, []);
   const updateState = useCallback((value: Partial<T>) => {
     const url = new URL(window.location.href);
     for (const [key, val] of Object.entries(value)) {
@@ -40,19 +42,19 @@ export function useRouteStates<T extends Record<any, any>>(obj: T) {
       } else {
         url.searchParams.delete(key);
         if (val && Array.isArray(val) && val.length > 0) {
-          val.forEach(v => {
+          val.forEach((v) => {
             url.searchParams.append(key, v);
-          })
+          });
         }
       }
     }
     window.history.pushState({}, '', url);
-    setState(prev => {
+    setState((prev) => {
       return {
         ...prev,
-        ...value
-      }
-    })
+        ...value,
+      };
+    });
   }, []);
   return [state, updateState] as const;
 }
@@ -62,7 +64,7 @@ export function useRouteState<T>(key: string, type: T) {
     // 初始化url上已有的参数， 比如f5刷新
     if (
       ![ArrayParam, StringParam, BooleanParam, NumberParam].includes(
-        type as any
+        type as any,
       )
     ) {
       return null as T;
@@ -86,21 +88,21 @@ export function useRouteState<T>(key: string, type: T) {
      * 浏览器导航返回时，对状态进行还原上一步
      */
     const handlePopstate = () => {
-      const searchParams = new URLSearchParams(window.location.search)
-      const paramValue = type === ArrayParam ? searchParams.getAll(key) : searchParams.get(key);
+      const searchParams = new URLSearchParams(window.location.search);
+      const paramValue =
+        type === ArrayParam ? searchParams.getAll(key) : searchParams.get(key);
       /**
        * TODO 这里不知道为啥渲染两次，把多余的if掉
        */
       if (paramValue === state) {
         setState(paramValue as T);
       }
-    }
-    window.addEventListener('popstate', handlePopstate)
+    };
+    window.addEventListener('popstate', handlePopstate);
     return () => {
       window.removeEventListener('popstate', handlePopstate);
-    }
-
-  }, [])
+    };
+  }, []);
 
   const updateState = useCallback((value: T) => {
     /**
@@ -109,7 +111,7 @@ export function useRouteState<T>(key: string, type: T) {
      */
     if (
       ![ArrayParam, StringParam, BooleanParam, NumberParam].includes(
-        type as any
+        type as any,
       )
     ) {
       console.error('a invalid type is passed');
@@ -120,8 +122,8 @@ export function useRouteState<T>(key: string, type: T) {
 
     if (type !== ArrayParam) {
       /**
-        *  基础类型
-        */
+       *  基础类型
+       */
       if ([undefined, null, '', Infinity].includes(value as any)) {
         url.searchParams.delete(key);
         window.history.pushState({}, '', url);
@@ -136,9 +138,9 @@ export function useRouteState<T>(key: string, type: T) {
 
       url.searchParams.delete(key);
       if (value && Array.isArray(value) && value.length > 0) {
-        value.forEach(v => {
+        value.forEach((v) => {
           url.searchParams.append(key, v);
-        })
+        });
       }
 
       window.history.pushState({}, '', url);
