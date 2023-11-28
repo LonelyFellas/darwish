@@ -1,3 +1,5 @@
+const objProtoCallType = <T>(value: unknown, type: T) =>
+  Object.prototype.toString.call(value).slice(8, -1).toLowerCase() === type;
 import { isValidElement } from 'react';
 export const isPromise = (value: unknown): value is Promise<any> =>
   Promise.resolve(value) instanceof Promise;
@@ -16,7 +18,7 @@ export const isBigint = (value: unknown): value is bigint =>
 export const isArray = (value: unknown): value is any[] => Array.isArray(value);
 export const isSymbol = (value: unknown): value is symbol =>
   typeof value === 'symbol';
-export const isFunction = (value: unknown): value is Function =>
+export const isFunction = (value: unknown): value is (...props: any) => any =>
   typeof value === 'function';
 export const isString = (value: unknown): value is string =>
   typeof value === 'string';
@@ -28,5 +30,3 @@ export const isUndef = (value: unknown): value is undefined =>
   typeof value === 'undefined';
 export const isJSX = (value: unknown): value is JSX.Element =>
   isValidElement(value);
-const objProtoCallType = <T>(value: unknown, type: T) =>
-  Object.prototype.toString.call(value).slice(8, -1).toLowerCase() === type;

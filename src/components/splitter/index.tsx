@@ -1,8 +1,7 @@
+import Darwish from 'darwish';
 import { useEffect, useRef } from 'react';
 // @ts-ignore
 import style from './index.module.css';
-import Darwish from 'darwish';
-
 
 const Splitter = ({ splitterWidth = 15 }: { splitterWidth?: number }) => {
   const [states, setStates] = Darwish.useSetState({
@@ -30,7 +29,7 @@ const Splitter = ({ splitterWidth = 15 }: { splitterWidth?: number }) => {
     if (slideRef.current) {
       setStates({ width: slideRef.current.clientWidth });
     }
-  }, [slideRef.current])
+  }, [slideRef.current]);
 
   return (
     <div className={style.splitter_ctn}>
@@ -38,7 +37,10 @@ const Splitter = ({ splitterWidth = 15 }: { splitterWidth?: number }) => {
         className={style.splitter__left}
         ref={slideRef}
         style={{
-          width: width == -1 ? `calc(50% - ${splitterWidth / 2}px)` : `${width + moveX}px`,
+          width:
+            width === -1
+              ? `calc(50% - ${splitterWidth / 2}px)`
+              : `${width + moveX}px`,
         }}
       ></div>
       <div
@@ -49,9 +51,7 @@ const Splitter = ({ splitterWidth = 15 }: { splitterWidth?: number }) => {
         onDrag={onDrag}
         draggable={true}
       ></div>
-      <div
-        className={style.splitter__right}
-      ></div>
+      <div className={style.splitter__right}></div>
     </div>
   );
 };

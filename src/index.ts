@@ -79,8 +79,8 @@ import {
   isSymbol,
   isUndef,
 } from './utils/is';
-import List from './utils/list';
 import { objAssign, objCuter } from './utils/objOperation';
+import toNumber from './utils/toNumber';
 import typeOfData from './utils/typeOfData';
 const Darwish = {
   IteratorViews,
@@ -119,7 +119,7 @@ const Darwish = {
   dlv,
   typeOfData,
   deepEqual,
-  List,
+  toNumber,
   useImmer,
   useImmerReducer,
   useSyncState,
@@ -153,7 +153,6 @@ export {
   HighlightedText,
   If,
   IteratorViews,
-  List,
   Selection,
   Splitter,
   Switch,
@@ -184,6 +183,7 @@ export {
   objAssign,
   objCuter,
   shuffleArray,
+  toNumber,
   typeOfData,
   uniqueObjectOfArray,
   uniqueObjectOfArrayToMap,

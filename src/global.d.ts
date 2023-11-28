@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 export declare class CList {
   dataSource: Array<unknown>;
   remove: {
@@ -61,6 +62,7 @@ import Selection from './components/Selection';
 import cloneDeep from './utils/cloneDeep';
 import isFilterUselessKeyValue from './utils/filterUselessKeyValue';
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 declare const Darwish: {
   ElementLabel: Darwish.ElementLabel;
   ElementRef: Darwish.ElementRef<Darwish.ElementLabel>;
@@ -109,7 +111,7 @@ declare const Darwish: {
   isArray: (value: unknown) => value is any[];
   isDate: (value: unknown) => value is Date;
   isBoolean: (value: unknown) => value is boolean;
-  isFunction: (value: unknown) => value is Function;
+  isFunction: (value: unknown) => value is (...arg: any) => any;
   isMap: (value: unknown) => value is Map<any, any>;
   isNumber: (value: unknown) => value is number;
   isObject: (value: unknown) => value is Record<any, any>;
@@ -128,6 +130,7 @@ declare const Darwish: {
   deepEqual: <T>(lfs: T, rfs: T) => boolean;
   objAssign: <T, U, K extends keyof T & keyof U>(a: T, b: U, keys: K[]) => void;
   objCuter: <T, U extends keyof T>(recordObj: T, keyArr: U[]) => Pick<T, U>;
+  toNumber: (value: any, defaultValue?: number) => number;
   List: Darwish.TList;
   useImmer: <S = any>(initialValue: S | (() => S)) => ImmerHook<S>;
   useImmerReducer: {
@@ -299,4 +302,5 @@ declare global {
 }
 
 export declare module '*.css';
+export declare module '*.module.css';
 export default Darwish;

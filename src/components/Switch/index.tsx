@@ -6,6 +6,13 @@ import {
   type PropsWithChildren,
   type ReactElement,
 } from 'react';
+interface CaseProps {
+  condition?: boolean;
+}
+const Case: FC<PropsWithChildren<{ condition?: boolean }>> = ({ children }) => (
+  <>{children}</>
+);
+const Default: FC<PropsWithChildren<any[]>> = ({ children }) => <>{children}</>;
 
 export function Switch(
   props: PropsWithChildren<{ strict?: boolean }>,
@@ -27,7 +34,7 @@ export default function Switch(props: PropsWithChildren<SwitchProps>) {
       } else if (strict === false) {
         if (
           (child.type === Case && child.props.condition === true) ||
-          child.type != Case
+          child.type !== Case
         ) {
           matchChild.push(child);
         }
@@ -40,10 +47,3 @@ export default function Switch(props: PropsWithChildren<SwitchProps>) {
     matchChild,
   );
 }
-
-interface CaseProps {
-  condition?: boolean;
-}
-const Case: FC<PropsWithChildren<{ condition?: boolean }>> = ({ children }) =>
-  <>{children}</>;
-const Default: FC<PropsWithChildren<{}>> = ({ children }) => <>{children}</>;; 
