@@ -1,19 +1,4 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-export declare class CList {
-  dataSource: Array<unknown>;
-  remove: {
-    (option: { index: number }): void;
-    (option: { target: unknown }): void;
-    (option: { primaryKeyOfValue: { primaryKey: string; value: any } }): void;
-    (option: {
-      index?: number;
-      target?: unknown;
-      primaryKeyOfValue?: { primaryKey: string; value: any };
-    }): void;
-  };
-  sort: () => void;
-  add: (value: unknown) => void;
-}
 export = Darwish;
 export as namespace Darwish;
 declare namespace Darwish {
@@ -131,7 +116,6 @@ declare const Darwish: {
   objAssign: <T, U, K extends keyof T & keyof U>(a: T, b: U, keys: K[]) => void;
   objCuter: <T, U extends keyof T>(recordObj: T, keyArr: U[]) => Pick<T, U>;
   toNumber: (value: any, defaultValue?: number) => number;
-  List: Darwish.TList;
   useImmer: <S = any>(initialValue: S | (() => S)) => ImmerHook<S>;
   useImmerReducer: {
     <S, A, I>(
