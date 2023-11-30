@@ -79,6 +79,7 @@ import {
   isSymbol,
   isUndef,
 } from './utils/is';
+import ExtendObject from './utils/obj';
 import { objAssign, objCuter } from './utils/objOperation';
 import toNumber from './utils/toNumber';
 import typeOfData from './utils/typeOfData';
@@ -150,6 +151,7 @@ const Darwish = {
   useScroll,
 };
 export {
+  ExtendObject,
   HighlightedText,
   If,
   IteratorViews,
