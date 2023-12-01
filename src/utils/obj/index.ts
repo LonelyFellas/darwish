@@ -11,6 +11,7 @@ export default class ExtendObject extends Object {
         }
       });
     } else {
+      console.error(`PickKeys: ${JSON.stringify} 不是个数组`);
     }
     return obj;
   };
@@ -25,6 +26,8 @@ export default class ExtendObject extends Object {
           obj[key] = dataSource[key];
         }
       });
+    } else {
+      console.error(`OmitKeys: ${JSON.stringify} 不是个数组`);
     }
     return obj;
   };

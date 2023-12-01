@@ -34,6 +34,16 @@ declare namespace Darwish {
     | 'regExp'
     | 'set';
 }
+export class ExtendObject extends Object {
+  static pick: <T extends Record<PropertyKey, any>>(
+    dataSource: T,
+    pickKeys: (keyof T)[],
+  ) => Partial<T>;
+  static omit: <T extends Record<PropertyKey, any>>(
+    dataSource: T,
+    omitKeys: (keyof T)[],
+  ) => Partial<T>;
+}
 /**
  * Components
  */
@@ -283,6 +293,7 @@ declare global {
     keywords?: string;
     color?: string;
   }
+  type ExtendObject = typeof ExtendObject;
 }
 
 export declare module '*.css';
