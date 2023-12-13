@@ -229,6 +229,11 @@ declare const Darwish: {
     pressedView: JSX.Element | (() => JSX.Element),
     callback: () => void,
   ) => () => React.FunctionComponentElement<any>;
+  useUpdateEffectOnce: (
+    effect: React.EffectCallback,
+    condition?: boolean,
+  ) => void;
+  useEffectOnce: (effect: React.EffectCallback) => void;
 };
 /**
  * 全局
@@ -263,7 +268,7 @@ declare global {
     setLeft: () => void;
     setRight: () => void;
   }
-  type DraftFunction<S> = (draft: Draft<S>) => void;
+  type DraftFunction<S> = (draft: import('immer').Draft<S>) => void;
   type Updater<S> = (arg: S | DraftFunction<S>) => void;
   type ImmerHook<S> = [S, Updater<S>];
   type ImmerReducer<S, A> = (

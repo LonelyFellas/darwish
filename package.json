@@ -1,7 +1,15 @@
 {
   "name": "darwish",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "A react library developed with dumi",
+  "homepage": "https://github.com/LonelyFellas/darwish#readme",
+  "bugs": {
+    "url": "https://github.com/LonelyFellas/darwish/issues"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "https://github.com/LonelyFellas/darwish/"
+  },
   "license": "MIT",
   "module": "dist/index.js",
   "types": "dist/global.d.ts",
@@ -9,14 +17,6 @@
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "directory": "https://github.com/LonelyFellas/darwish/"
-  },
-  "bugs": {
-    "url": "https://github.com/LonelyFellas/darwish/issues"
-  },
-  "homepage": "https://github.com/LonelyFellas/darwish#readme",
   "scripts": {
     "build": "father build",
     "build:watch": "father dev",
@@ -53,6 +53,11 @@
       "prettier --parser=typescript --write"
     ]
   },
+  "dependencies": {
+    "immer": "^10.0.2",
+    "js-cookie": "^3.0.5",
+    "qrcode": "^1.5.3"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
@@ -83,10 +88,5 @@
   },
   "authors": [
     "darwish <289582304@qq.com>"
-  ],
-  "dependencies": {
-    "immer": "^10.0.2",
-    "js-cookie": "^3.0.5",
-    "qrcode": "^1.5.3"
-  }
+  ]
 }

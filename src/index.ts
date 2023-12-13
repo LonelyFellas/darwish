@@ -14,6 +14,7 @@ import useBoolean from './hooks/useBoolean';
 import useCookie from './hooks/useCookie';
 import useDefault from './hooks/useDefault';
 import useDisplayDevError from './hooks/useDisplayDevError';
+import useEffectOnce from './hooks/useEffectOnce';
 import useEventListener from './hooks/useEventListener';
 import useHover from './hooks/useHover';
 import useImmer from './hooks/useImmer';
@@ -37,6 +38,8 @@ import useToggle from './hooks/useToggle';
 import useUnmount from './hooks/useUnMount';
 import useUpdate from './hooks/useUpdate';
 import useUpdateEffect from './hooks/useUpdateEffect';
+import useUpdateEffectOnce from './hooks/useUpdateEffectOnce';
+
 /**
  * utils
  */
@@ -193,6 +196,7 @@ export {
   useCookie,
   useDefault,
   useDisplayDevError,
+  useEffectOnce,
   useEventListener,
   useHover,
   useImmer,
@@ -217,6 +221,7 @@ export {
   useUnmount,
   useUpdate,
   useUpdateEffect,
+  useUpdateEffectOnce,
 };
 export type {
   AnyType,
