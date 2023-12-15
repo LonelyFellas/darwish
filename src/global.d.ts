@@ -126,6 +126,7 @@ declare const Darwish: {
   objAssign: <T, U, K extends keyof T & keyof U>(a: T, b: U, keys: K[]) => void;
   objCuter: <T, U extends keyof T>(recordObj: T, keyArr: U[]) => Pick<T, U>;
   toNumber: (value: any, defaultValue?: number) => number;
+  chunkArray: <T_5>(arr: T_5[], size: number) => T_5[][];
   useImmer: <S = any>(initialValue: S | (() => S)) => ImmerHook<S>;
   useImmerReducer: {
     <S, A, I>(
@@ -238,7 +239,6 @@ declare const Darwish: {
 /**
  * 全局
  */
-
 declare global {
   interface IUseListUtil<T> {
     set: (value: IHookState<T[]>) => void;

@@ -52,6 +52,7 @@ import type {
   TList,
 } from './global';
 import {
+  chunkArray,
   shuffleArray,
   uniqueObjectOfArray,
   uniqueObjectOfArrayToMap,
@@ -121,6 +122,7 @@ const Darwish = {
   objAssign,
   objCuter,
   dlv,
+  chunkArray,
   typeOfData,
   deepEqual,
   toNumber,
@@ -161,6 +163,7 @@ export {
   Selection,
   Splitter,
   Switch,
+  chunkArray,
   cloneDeep,
   deepEqual,
   dlv,
