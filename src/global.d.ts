@@ -31,8 +31,9 @@ declare namespace Darwish {
     | 'symbol'
     | 'date'
     | 'function'
-    | 'regExp'
-    | 'set';
+    | 'regexp'
+    | 'set'
+    | 'map';
 }
 export class ExtendObject extends Object {
   static pick: <T extends Record<PropertyKey, any>>(
@@ -120,6 +121,11 @@ declare const Darwish: {
     p?: number,
     undef?: unknown,
   ) => unknown;
+  /**
+   * @description Check out any type for any data (检查任何数据的任何类型)
+   * @param data dataSource(数据源)
+   * @returns return a union type ('null' | 'undefined' | 'string' | 'boolean' | 'object' | 'array' | 'symbol' | 'date' | 'function' | 'regexp' | 'set' | 'map')
+   */
   typeOfData: (value: unknown) => Darwish.AnyType;
   deepEqual: <T>(lfs: T, rfs: T) => boolean;
   objAssign: <T, U, K extends keyof T & keyof U>(a: T, b: U, keys: K[]) => void;
