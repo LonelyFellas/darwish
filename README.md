@@ -11,7 +11,10 @@ A react library developed with dumi
 
 ## Options
 
-具体可以去看源码
+<!-- 具体可以去看源码 -->
+
+不再推荐使用`UI`组件部分，UI组件部分会在之后的版本废除
+正在编写 `utils` 的文档
 
 ## Development
 
