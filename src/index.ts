@@ -1,12 +1,12 @@
 /**
  * Components
  */
-import HighlightedText from './components/HighlightedText';
-import If from './components/If';
-import IteratorViews from './components/IteratorViews';
-import Selection from './components/Selection';
-import Splitter from './components/Splitter';
-import Switch from './components/Switch';
+// import HighlightedText from './components/HighlightedText';
+// import If from './components/If';
+// import IteratorViews from './components/IteratorViews';
+// import Selection from './components/Selection';
+// import Splitter from './components/Splitter';
+// import Switch from './components/Switch';
 /**
  * hooks
  */
@@ -88,12 +88,12 @@ import { objAssign, objCuter } from './utils/objOperation';
 import toNumber from './utils/toNumber';
 import typeOfData from './utils/typeOfData';
 const Darwish = {
-  IteratorViews,
-  Selection,
-  If,
-  HighlightedText,
-  Switch,
-  Splitter,
+  // IteratorViews,
+  // Selection,
+  // If,
+  // HighlightedText,
+  // Switch,
+  // Splitter,
   cloneDeep,
   getQueryParams,
   isBlanks,
@@ -157,12 +157,12 @@ const Darwish = {
 };
 export {
   ExtendObject,
-  HighlightedText,
-  If,
-  IteratorViews,
-  Selection,
-  Splitter,
-  Switch,
+  // HighlightedText,
+  // If,
+  // IteratorViews,
+  // Selection,
+  // Splitter,
+  // Switch,
   chunkArray,
   cloneDeep,
   deepEqual,

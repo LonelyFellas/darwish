@@ -47,7 +47,6 @@ export class ExtendObject extends Object {
 /**
  * Components
  */
-import Selection from './components/Selection';
 /**
  * hooks
  */
@@ -65,29 +64,29 @@ declare const Darwish: {
   ElementChangeEvent: Darwish.ElementChangeEvent<Darwish.ElementLabel>;
   EmptyObject: Darwish.EmptyObject;
   AnyType: Darwish.AnyType;
-  IteratorViews: {
-    (props: {
-      items: any[] | number;
-      children?:
-        | JSX.Element
-        | ((item: any, index: number) => JSX.Element)
-        | null;
-    }): JSX.Element;
-    ({ props: IteratorViewsProps }): JSX.Element;
-  };
-  If: FC<
-    PropsWithChildren<{
-      condition: boolean;
-      render?: (() => JSX.Element) | undefined;
-    }>
-  >;
-  Switch: {
-    (props: PropsWithChildren<{ strict?: boolean }>): JSX.Element;
-    (props: PropsWithChildren<SwitchProps>): JSX.Element;
-  };
-  HighlightedText: FC<PropsWithChildren<HighlightedTextProps>>;
+  // IteratorViews: {
+  //   (props: {
+  //     items: any[] | number;
+  //     children?:
+  //       | JSX.Element
+  //       | ((item: any, index: number) => JSX.Element)
+  //       | null;
+  //   }): JSX.Element;
+  //   ({ props: IteratorViewsProps }): JSX.Element;
+  // };
+  // If: FC<
+  //   PropsWithChildren<{
+  //     condition: boolean;
+  //     render?: (() => JSX.Element) | undefined;
+  //   }>
+  // >;
+  // Switch: {
+  //   (props: PropsWithChildren<{ strict?: boolean }>): JSX.Element;
+  //   (props: PropsWithChildren<SwitchProps>): JSX.Element;
+  // };
+  // HighlightedText: FC<PropsWithChildren<HighlightedTextProps>>;
 
-  Selection: typeof Selection;
+  // Selection: typeof Selection;
   cloneDeep: typeof cloneDeep;
   getQueryParams: (URL: string) => string;
   isBlanks: <T>(data: T) => boolean;

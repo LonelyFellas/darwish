@@ -7,24 +7,11 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@@/*": [
-        ".dumi/tmp/*"
-      ],
-      "darwish": [
-        "src",
-        "*"
-      ],
-      "darwish/*": [
-        "src/*",
-        "*"
-      ]
+      "@@/*": [".dumi/tmp/*"],
+      "darwish": ["src", "*"],
+      "darwish/*": ["src/*", "*"]
     }
   },
-  "exclude": [
-    "./src/index.ts",
-  ],
-  "include": [
-    ".dumirc.ts",
-    "src/**/*"
-  ]
+  "exclude": ["./src/index.ts"],
+  "include": [".dumirc.ts", "src/**/*", "components-bk"]
 }
