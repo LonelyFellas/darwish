@@ -25,12 +25,12 @@ describe('toNumber of utils function to test', () => {
   it('When arg_0 is a number, and no default value', () => {
     expect(toNumber(11111)).toBe(11111);
   });
-  // Object类型
+  // Object type
   it('When arg_0 is a Object type , and no default value', () => {
     expect(toNumber({ name: 1 })).toBe(NaN);
     expect(toNumber(new Set([1, 2, 3]))).toBe(NaN);
   });
-  // Object类型
+  // Object type
   it('When arg_0 is a Object type , and it have a default value', () => {
     expect(toNumber({ name: 1 }, 0)).toBe(0);
     expect(toNumber(new Set([1, 2, 3]), 9)).toBe(9);
