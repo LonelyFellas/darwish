@@ -60,7 +60,7 @@ import {
 import cloneDeep from './utils/cloneDeep';
 import deepEqual from './utils/deepEqual';
 import dlv from './utils/dlv';
-import isFilterUselessKeyValue from './utils/filterUselessKeyValue';
+import isFilterUselessKeyValue from './utils/filterUselessKV';
 import getQueryParams from './utils/getQueryParams';
 import {
   isArray,

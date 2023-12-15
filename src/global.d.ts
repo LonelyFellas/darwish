@@ -54,7 +54,7 @@ export class ExtendObject extends Object {
  * utils
  */
 import cloneDeep from './utils/cloneDeep';
-import isFilterUselessKeyValue from './utils/filterUselessKeyValue';
+import isFilterUselessKeyValue from './utils/filterUselessKV';
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 declare const Darwish: {
@@ -247,7 +247,6 @@ declare global {
     update: (predicate: (a: T, b: T) => boolean, updateValue: T) => void;
     updateFirst: (predicate: (a: T, b: T) => boolean, updateValue: T) => void;
     upsert: (predicate: (a: T, b: T) => boolean, updateValue: T) => void;
-    sort: (callbackFn: (a: T, b: T) => number) => void;
     filter: (
       callbackFn: (value: T, index?: number, array?: T[]) => boolean,
       thisArg?: any,

@@ -1,12 +1,12 @@
 ---
 hero:
   title: darwish
-  description: A react library developed with dumi
+  description: 一个集合所有业务都能用到的js库
   actions:
-    - text: Components List
-      link: /components
     - text: Hooks List
       link: /hooks
+    - text: Utils List
+      link: /utils
     - text: GitHub
       link: https://github.com/LonelyFellas/darwish
 features:

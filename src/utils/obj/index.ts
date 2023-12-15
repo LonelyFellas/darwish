@@ -1,4 +1,4 @@
-import { isObject } from 'darwish';
+import { isArray, isBlanks, isObject } from '../is';
 
 export default class ExtendObject extends Object {
   static pick = <T extends Record<PropertyKey, any>>(
@@ -9,7 +9,6 @@ export default class ExtendObject extends Object {
       console.error('DataSource 不是一个Object');
     }
 
-    // TODO 可能要判断datasource 进来是否是一个object类型
     const obj: Partial<T> = {};
     if (Array.isArray(pickKeys)) {
       pickKeys?.forEach((key) => {
@@ -31,7 +30,7 @@ export default class ExtendObject extends Object {
     }
 
     const obj: Partial<T> = {};
-    if (Array.isArray(omitKeys)) {
+    if (isArray(omitKeys)) {
       Object.keys(dataSource).forEach((key: keyof T) => {
         if (!omitKeys.includes(key)) {
           obj[key] = dataSource[key];
@@ -41,5 +40,25 @@ export default class ExtendObject extends Object {
       console.error(`OmitKeys: ${JSON.stringify} 不是个数组`);
     }
     return obj;
+  };
+
+  static filterUseless = <T extends AnyObj>(
+    dataSource: T,
+    isFilterEmptyString: boolean = false,
+  ) => {
+    if (isObject(dataSource)) {
+      const obj: Partial<T> = {};
+      Object.entries(dataSource).forEach(([key, value]) => {
+        const bool = isFilterEmptyString
+          ? isBlanks(value)
+          : value === undefined || value === null;
+        if (bool) {
+          obj[key as keyof T] = value;
+        }
+      });
+    } else {
+      console.error('数据源不是一个Object类型');
+      return dataSource;
+    }
   };
 }

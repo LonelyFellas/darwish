@@ -13,5 +13,5 @@
     }
   },
   "exclude": ["./src/index.ts"],
-  "include": [".dumirc.ts", "src/**/*", "components-bk"]
+  "include": [".dumirc.ts", "src/**/*", "test", "components-bk"]
 }
