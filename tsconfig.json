@@ -6,12 +6,20 @@
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "baseUrl": "./",
+    "typeRoots": ["src/types/darwish.d.ts"],
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "darwish": ["src", "*"],
       "darwish/*": ["src/*", "*"]
     }
   },
-  "exclude": ["./src/index.ts"],
-  "include": [".dumirc.ts", "src/**/*", "test", "components-bk"]
+  "exclude": [],
+  "include": [
+    ".dumirc.ts",
+    "src/**/*",
+    "test",
+    "components-bk",
+    "src/types/*.d.ts",
+    "src/types/"
+  ]
 }

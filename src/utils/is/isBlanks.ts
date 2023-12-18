@@ -1,5 +1,6 @@
+import type { EmptyObj } from 'darwish';
 import { isArray, isDate, isMap, isObject, isSet } from './isTypings';
-type Nullable = undefined | null | never | Darwish.EmptyObject;
+type Nullable = undefined | null | never | EmptyObj;
 /**
  *
  * @param data 支持所有基本类型,还有[],{},Set,Map,Date的判断，true则数据空或者数据错误

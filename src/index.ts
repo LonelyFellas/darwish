@@ -1,12 +1,5 @@
-/**
- * Components
- */
-// import HighlightedText from './components/HighlightedText';
-// import If from './components/If';
-// import IteratorViews from './components/IteratorViews';
-// import Selection from './components/Selection';
-// import Splitter from './components/Splitter';
-// import Switch from './components/Switch';
+/* eslint-disable @typescript-eslint/no-namespace */
+import './types/global';
 /**
  * hooks
  */
@@ -22,20 +15,20 @@ import useImmerReducer from './hooks/useImmerReducer';
 import useKey from './hooks/useKey';
 import useLatest from './hooks/useLatest';
 import useList from './hooks/useList';
+import useLocalStorage from './hooks/useLocalStorage';
 import useMount from './hooks/useMount';
 import usePress from './hooks/usePress';
 import usePrevious from './hooks/usePrevious';
 import useQrCode from './hooks/useQrCode';
 import { useRouteState, useRouteStates } from './hooks/useRouteState';
 import useScroll from './hooks/useScroll';
+import useSessionStorage from './hooks/useSessionStorage';
 import useSet from './hooks/useSet';
 import useSetState from './hooks/useSetState';
-import useLocalStorage from './hooks/useStorage/useLocalStorage';
-import useSessionStorage from './hooks/useStorage/useSessionStorage';
 import useSyncState from './hooks/useSyncState';
 import useTextSelection from './hooks/useTextSelection';
 import useToggle from './hooks/useToggle';
-import useUnmount from './hooks/useUnMount';
+import useUnmount from './hooks/useUnmount';
 import useUpdate from './hooks/useUpdate';
 import useUpdateEffect from './hooks/useUpdateEffect';
 import useUpdateEffectOnce from './hooks/useUpdateEffectOnce';
@@ -43,14 +36,6 @@ import useUpdateEffectOnce from './hooks/useUpdateEffectOnce';
 /**
  * utils
  */
-import type {
-  AnyType,
-  ElementChangeEvent,
-  ElementClickEvent,
-  ElementLabel,
-  ElementRef,
-  TList,
-} from './global';
 import {
   chunkArray,
   shuffleArray,
@@ -88,12 +73,6 @@ import { objAssign, objCuter } from './utils/objOperation';
 import toNumber from './utils/toNumber';
 import typeOfData from './utils/typeOfData';
 const Darwish = {
-  // IteratorViews,
-  // Selection,
-  // If,
-  // HighlightedText,
-  // Switch,
-  // Splitter,
   cloneDeep,
   getQueryParams,
   isBlanks,
@@ -157,12 +136,6 @@ const Darwish = {
 };
 export {
   ExtendObject,
-  // HighlightedText,
-  // If,
-  // IteratorViews,
-  // Selection,
-  // Splitter,
-  // Switch,
   chunkArray,
   cloneDeep,
   deepEqual,
@@ -226,12 +199,39 @@ export {
   useUpdateEffect,
   useUpdateEffectOnce,
 };
-export type {
-  AnyType,
-  ElementChangeEvent,
-  ElementClickEvent,
-  ElementLabel,
-  ElementRef,
-  TList,
-};
+
 export default Darwish;
+declare global {
+  namespace Darwish {
+    type AnyObj = Record<PropertyKey, any>;
+    type EmptyObj = Record<PropertyKey, never>;
+
+    type ElementLabel = keyof JSX.IntrinsicElements;
+    type ElementRef<T extends ElementLabel> =
+      JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<
+        React.HTMLAttributes<unknown>,
+        infer A
+      >
+        ? A
+        : never;
+    type ElementClickEvent<T extends ElementLabel> = React.MouseEvent<
+      ElementRef<T>,
+      MouseEvent
+    >;
+    type ElementChangeEvent<T extends ElementLabel> = React.ChangeEvent<
+      ElementRef<T>
+    >;
+    type ElementHTMLProps<T extends ElementLabel> = JSX.IntrinsicElements[T];
+  }
+}
+declare module 'darwish' {
+  type AnyObj = Darwish.AnyObj;
+  type EmptyObj = Darwish.EmptyObj;
+
+  type ElementLabel = Darwish.ElementLabel;
+  type ElementRef<T extends ElementLabel> = Darwish.ElementRef<T>;
+  type ElementClickEvent<T extends ElementLabel> = Darwish.ElementClickEvent<T>;
+  type ElementChangeEvent<T extends ElementLabel> =
+    Darwish.ElementChangeEvent<T>;
+  type ElementHTMLProps<T extends ElementLabel> = Darwish.ElementHTMLProps<T>;
+}

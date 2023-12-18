@@ -1,3 +1,4 @@
+import type { AnyObj } from 'darwish';
 import { isArray, isBlanks, isObject } from '../is';
 
 export default class ExtendObject extends Object {
