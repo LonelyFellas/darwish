@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import './types/global';
+import './types/darwish';
 /**
  * hooks
  */
@@ -201,37 +201,3 @@ export {
 };
 
 export default Darwish;
-declare global {
-  namespace Darwish {
-    type AnyObj = Record<PropertyKey, any>;
-    type EmptyObj = Record<PropertyKey, never>;
-
-    type ElementLabel = keyof JSX.IntrinsicElements;
-    type ElementRef<T extends ElementLabel> =
-      JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<
-        React.HTMLAttributes<unknown>,
-        infer A
-      >
-        ? A
-        : never;
-    type ElementClickEvent<T extends ElementLabel> = React.MouseEvent<
-      ElementRef<T>,
-      MouseEvent
-    >;
-    type ElementChangeEvent<T extends ElementLabel> = React.ChangeEvent<
-      ElementRef<T>
-    >;
-    type ElementHTMLProps<T extends ElementLabel> = JSX.IntrinsicElements[T];
-  }
-}
-declare module 'darwish' {
-  type AnyObj = Darwish.AnyObj;
-  type EmptyObj = Darwish.EmptyObj;
-
-  type ElementLabel = Darwish.ElementLabel;
-  type ElementRef<T extends ElementLabel> = Darwish.ElementRef<T>;
-  type ElementClickEvent<T extends ElementLabel> = Darwish.ElementClickEvent<T>;
-  type ElementChangeEvent<T extends ElementLabel> =
-    Darwish.ElementChangeEvent<T>;
-  type ElementHTMLProps<T extends ElementLabel> = Darwish.ElementHTMLProps<T>;
-}
