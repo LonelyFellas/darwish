@@ -8,6 +8,7 @@ export default class ExtendObject extends Object {
   ) => {
     if (isObject(dataSource)) {
       console.error('DataSource 不是一个Object');
+      return;
     }
 
     const obj: Partial<T> = {};
@@ -28,6 +29,7 @@ export default class ExtendObject extends Object {
   ) => {
     if (isObject(dataSource)) {
       console.error('DataSource 不是一个Object');
+      return;
     }
 
     const obj: Partial<T> = {};

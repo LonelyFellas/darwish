@@ -1,24 +1,22 @@
-import { isDate, isMap, isObject, isSet } from './is/isTypings';
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import { isArray, isDate, isMap, isNull, isNumber, isSet } from './is';
 import typeOfData from './typeOfData';
-
-export function deepEqualByArray<T extends any[]>(lfs: T[], rfs: T[]) {
+export function deepEqualByArray<T extends any[]>(
+  lfs: T[],
+  rfs: T[],
+  isSort: boolean = false,
+) {
   if (lfs.length !== rfs.length) {
     return false;
   }
 
-  lfs.sort();
-  rfs.sort();
+  if (isSort) {
+    lfs.sort();
+    rfs.sort();
+  }
+
   for (let i = 0; i < lfs.length; i++) {
-    if (isObject(lfs[i]) && isObject(rfs[i])) {
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      if (!deepEqualByObject(lfs[i], rfs[i])) {
-        return false;
-      }
-    } else if (Array.isArray(lfs[i]) && Array.isArray(rfs[i])) {
-      if (!deepEqualByArray(lfs[i], rfs[i])) {
-        return false;
-      }
-    } else if (lfs[i] !== rfs[i]) {
+    if (!deepEqual(lfs[i], rfs[i])) {
       return false;
     }
   }
@@ -40,18 +38,10 @@ export function deepEqualByObject<T extends Record<any, any>>(lfs: T, rfs: T) {
   value1.sort();
   value2.sort();
   for (let i = 0; i < key1.length; i++) {
-    if (key1[i] !== key2[i]) {
+    if (!deepEqual(key1[i], key2[i])) {
       return false;
     }
-    if (isObject(value1[i]) && isObject(value2[i])) {
-      if (!deepEqualByObject(value1[i], value2[i])) {
-        return false;
-      }
-    } else if (Array.isArray(value1[i]) && Array.isArray(value2[i])) {
-      if (!deepEqualByArray(value1[i], value2[i])) {
-        return false;
-      }
-    } else if (value1[i] !== value2[i]) {
+    if (!deepEqual(value1[i], value2[i])) {
       return false;
     }
   }
@@ -62,17 +52,36 @@ export function deepEqualByObject<T extends Record<any, any>>(lfs: T, rfs: T) {
 export default function deepEqual<T>(lfs: T, rfs: T) {
   if (typeOfData(lfs) !== typeOfData(rfs)) return false;
   let isEqual = lfs === rfs;
-  if (isDate(lfs) && isDate(rfs)) {
-    isEqual = lfs.getTime() === rfs.getTime();
-  } else if ((isSet(lfs) && isSet(rfs)) || (isMap(lfs) && isMap(rfs))) {
-    let arrLfs = Array.from(lfs);
-    let arrRfs = Array.from(rfs);
-    isEqual = deepEqualByArray(arrLfs, arrRfs);
-  } else if (isObject(lfs) && isObject(rfs)) {
-    isEqual = deepEqualByObject(lfs, rfs);
-  } else if (Array.isArray(lfs) && Array.isArray(rfs)) {
-    isEqual = deepEqualByArray(lfs, rfs);
-  }
+  if (typeof lfs === 'object' && typeof rfs === 'object') {
+    if (isArray(lfs) && isArray(rfs)) {
+      // array
+      isEqual = deepEqualByArray(lfs, rfs);
+    } else if ((isSet(lfs) && isSet(rfs)) || (isMap(lfs) && isMap(rfs))) {
+      // set
+      let arrLfs = Array.from(lfs);
+      let arrRfs = Array.from(rfs);
+      isEqual = deepEqualByArray(arrLfs, arrRfs, true);
+    } else if (isDate(lfs) && isDate(rfs)) {
+      // date
+      isEqual = lfs.getTime() === rfs.getTime();
+    } else if (isNull(lfs) && isNull(rfs)) {
+      // null
+      isEqual = true;
+    } else {
+      isEqual = deepEqualByObject(lfs as any, rfs);
+    }
+  } else if (typeof lfs === 'function' && typeof rfs === 'function') {
+    // function
+    isEqual = lfs.toString() === rfs.toString();
+  } else if (typeof lfs === 'symbol' && typeof rfs === 'symbol') {
+    // symbol
+    isEqual = lfs.toString() === rfs.toString();
+  } else {
+    // others
 
+    // number && NaN
+    if (isNumber(lfs) && isNumber(rfs) && isNaN(lfs) && isNaN(rfs)) return true;
+    isEqual = lfs === rfs;
+  }
   return isEqual;
 }

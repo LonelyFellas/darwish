@@ -6,7 +6,6 @@
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "baseUrl": "./",
-    "typeRoots": ["src/types/darwish.d.ts"],
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "darwish": ["src", "*"],
@@ -20,6 +19,7 @@
     "test",
     "components-bk",
     "src/types/*.d.ts",
-    "src/types/"
+    "src/types/",
+    "src/utils/*.test.ts"
   ]
 }
