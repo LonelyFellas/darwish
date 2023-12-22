@@ -1,4 +1,3 @@
-import {isSymbol} from '../../src/utils/is';
 import deepEqual from '../../src/utils/deepEqual';
 
 

@@ -11,7 +11,7 @@ describe('typeOfData of utils function to test', () => {
     expect(typeOfData(Symbol(1))).toBe('symbol');
     expect(typeOfData(new Date())).toBe('date');
     expect(typeOfData(() => 1)).toBe('function');
-    expect(typeOfData(new RegExp('/^d/g'))).toBe('regexp');
+    expect(typeOfData(new RegExp('/d/g'))).toBe('regexp');
     expect(typeOfData(new Set())).toBe('set');
     expect(typeOfData(new Map())).toBe('map');
   });
