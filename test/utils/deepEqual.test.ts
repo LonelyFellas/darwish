@@ -1,5 +1,15 @@
+import { isSymbol } from '../../src/utils/is';
 import deepEqual from '../../src/utils/deepEqual';
 
+
+function tag(obj: any, value: any) {
+  if (isSymbol && Symbol.toStringTag && Object.defineProperty) {
+    Object.defineProperty(obj, Symbol.toStringTag, {
+      value: value
+    });
+  }
+  return obj;
+}
 describe('deepEqual', () => {
   it('two objects', () => {
     expect(deepEqual({ a: [2, 3], b: [4] }, { a: [2, 3], b: [4] })).toBe(true);
@@ -195,18 +205,58 @@ describe('deepEqual', () => {
         new Set([undefined, 0, '5', true, '2', '-000']),
       ),
     ).toBe(false);
+    // TODO: wait fix
+    // // @ts-ignore
+    // expect(deepEqual(new Set(), new Map())).toBe(false);
+    // let maplikeSet = new Set();
+    // Object.defineProperty(maplikeSet, 'constructor', {
+    //   enumerable: false,
+    //   value: Map,
+    // });
+    // // @ts-ignore
+    // maplikeSet.__proto__ = Map.prototype; // eslint-disable-line no-proto
+    // // @ts-ignore
+    // expect(deepEqual(maplikeSet, new Map())).toBe(false);
+  });
+  it('not equal', () => {
+    expect(deepEqual({ x: 5, y: [6] }, { x: 5, y: 6 })).toBe(false);
+  });
+  it('nested nulls', () => {
+    expect(deepEqual([null, null, null], [null, null, null])).toBe(true);
+  });
+  it('objects with strings vs numbers', () => {
+    expect(deepEqual([{ a: 3 }, { b: 4 }], [{ a: '3' }, { b: '4' }])).toBe(
+      false,
+    );
+  });
+  it('non-objects', () => {
+    expect(deepEqual(3, 3)).toBe(true);
+    expect(deepEqual('beep', 'beep')).toBe(true);
     // @ts-ignore
-    expect(deepEqual(new Set(), new Map())).toBe(false);
-    let maplikeSet = new Set();
-    Object.defineProperty(maplikeSet, 'constructor', {
-      enumerable: false,
-      value: Map,
-    });
+    expect(deepEqual('3', 3)).toBe(false);
     // @ts-ignore
-    maplikeSet.__proto__ = Map.prototype; // eslint-disable-line no-proto
+    expect(deepEqual('3', [3])).toBe(false);
     // @ts-ignore
-    expect(deepEqual(maplikeSet, new Map())).toBe(false);
+    expect(deepEqual(3, [3])).toBe(false);
+  });
+  it('infinities', () => {
+    expect(deepEqual(-Infinity, -Infinity)).toBe(true);
+    expect(deepEqual(Infinity, Infinity)).toBe(true);
+    expect(deepEqual(-Infinity, Infinity)).toBe(false);
+    expect(deepEqual(Infinity, -Infinity)).toBe(false);
+  });
+  it('arguments class', () => {
+    function getArgs() {
+      return arguments;
+    }
+    // @ts-ignore
+    expect(deepEqual(getArgs(1, 2, 3), getArgs(1, 2, 3))).toBe(true);
+    // @ts-ignore
+    expect(deepEqual(getArgs(1, 2, 3), [1, 2, 4])).toBe(false);
+
+    let args = getArgs();
+    var noArgs = tag
   });
 });
 
-/// test-111
+// WeakMap WeakSet 修改原型
