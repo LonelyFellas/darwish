@@ -1,4 +1,4 @@
-import toNumber from '../../src/utils/toNumber';
+const toNumber = require('../../src/utils/toNumber').default;
 
 describe('toNumber of utils function to test', () => {
   // '12345'

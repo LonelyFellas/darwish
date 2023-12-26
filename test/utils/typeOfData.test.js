@@ -1,5 +1,5 @@
-import typeOfData from '../../src/utils/typeOfData';
-
+// import typeOfData  from '../../src/utils/typeOfData';
+const typeOfData = require("../../src/utils/typeOfData").default;
 describe('typeOfData of utils function to test', () => {
   it('check type', () => {
     expect(typeOfData(null)).toBe('null');

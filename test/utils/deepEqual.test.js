@@ -1,4 +1,4 @@
-import deepEqual from '../../src/utils/deepEqual';
+const deepEqual = require('../../src/utils/deepEqual').default;
 
 
 describe('deepEqual', () => {
@@ -240,6 +240,11 @@ describe('deepEqual', () => {
     expect(deepEqual(getArgs(1, 2, 3), [1, 2, 4])).toBe(false);
 
   });
+  it("Dates", () => {
+    const d0 = new Date(1387585278000);
+    const d1 = new Date('Fri Dec 20 2013 16:21:18 GMT-0800 (PST)');
+    expect(deepEqual(d0, d1)).toBe(true);
+  })
 });
 
 // WeakMap WeakSet 修改原型

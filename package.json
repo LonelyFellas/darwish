@@ -30,7 +30,7 @@
     "prepare": "husky install",
     "prepublishOnly": "father doctor && npm run build",
     "start": "npm run dev",
-    "test": "test"
+    "test": "npx jest test"
   },
   "commitlint": {
     "extends": [
