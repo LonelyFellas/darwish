@@ -4,6 +4,7 @@ declare global {
   namespace Darwish {
     type AnyObj = Record<PropertyKey, any>;
     type EmptyObj = Record<PropertyKey, never>;
+    type AnyFunc = (...args: any[]) => any;
 
     type ElementLabel = keyof JSX.IntrinsicElements;
     type ElementRef<T extends ElementLabel> =

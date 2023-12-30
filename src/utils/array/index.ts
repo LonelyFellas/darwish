@@ -5,13 +5,26 @@ export {
   uniqueObjectOfArrayToMap,
 } from './uniqueObjectOfArray';
 
-import { isArray } from "../is"
-export default class ExtendArray extends Array {
+import { isArray, isObject } from '../is';
+
+export default class ExtendArray<T> extends Array implements Array<T> {
+  value: T[] = [];
+
+  constructor(length: number);
+  constructor(...items: T[]);
+  constructor(value: T[]);
+  constructor(value: any) {
+    super();
+    if (isArray(value)) {
+      this.value = value;
+    }
+  }
+
   /**
-   * @description: chunk array 
-   * @param array data source
-   * @param size chunk size 
-   * @returns chunked array 
+   * @description Chunk array
+   * @param array Data source
+   * @param size Chunk size
+   * @returns A new data of chunked array
    */
   static chunk = <T>(array: T[], size: number): T[][] => {
     if (!isArray(array)) {
@@ -20,25 +33,26 @@ export default class ExtendArray extends Array {
     let count = 0;
     let index = 0;
     const result: T[][] = [];
-    array.forEach((item) => {
+    array.forEach((it) => {
       if (count === 0) {
         result.push([]);
       }
-      result[index].push(item);
+      result[index].push(it);
       if (count === size - 1) {
         index++;
         count = 0;
       } else {
         count++;
       }
-    })
+    });
     return result;
-  };
-
+  }
+  chunk = ExtendArray.chunk;
   /**
-   * @description shuffle array 
-   * @param array data source 
-   * @returns shuffled array 
+   * @property `static` chunk array
+   * @description Shuffle array
+   * @param array Data source
+   * @returns A new data of shuffled array
    */
   static shuffle = <T>(array: T[]): T[] => {
     if (!isArray(array)) {
@@ -55,13 +69,27 @@ export default class ExtendArray extends Array {
     }
     return result;
   };
+  /**
+   * @description shuffle array
+   * @param array data source
+   * @returns a new data of shuffled array
+   */
+  toShuffle = ExtendArray.shuffle;
+  /**
+   * @description shuffle this.value
+   */
+  shuffle = () => {
+    this.value = this.toShuffle(this.value);
+  };
 
   /**
-   * @description unique array 
-   * @param array data source 
-   * @returns unique array 
+   * Don't use this method
+   * @private
+   * @description Unique array
+   * @param array data source
+   * @returns unique array
    */
-  static unique = <T>(array: T[]): T[] => {
+  unique = <T>(array: T[]): T[] => {
     const length = array === null ? 0 : array.length;
     if (!length) {
       return [];
@@ -77,12 +105,14 @@ export default class ExtendArray extends Array {
     return result;
   };
   /**
-   * @description unique array by key 
-   * @param array data source 
-   * @param key unique key 
-   * @returns unique array 
+   * Don't use this method
+   * @private
+   * @description Unique array by key
+   * @param array data source
+   * @param key unique key
+   * @returns unique array
    */
-  static uniqueBy = <T, K extends keyof T>(array: T[], key: K): T[] => {
+  uniqueBy = <T, K extends keyof T>(array: T[], key: K): T[] => {
     const length = array === null ? 0 : array.length;
     if (!length) {
       return [];
@@ -101,12 +131,14 @@ export default class ExtendArray extends Array {
     return result;
   };
   /**
-   * @description unique array by map 
-   * @param array data source 
-   * @param key unique key 
-   * @returns unique array 
+   * Don't use this method
+   * @private
+   * @description Unique array by map
+   * @param array data source
+   * @param key unique key
+   * @returns unique array
    */
-  static uniqueByMap = <T, K extends keyof T>(array: T[], key: K): T[] => {
+  uniqueByMap = <T, K extends keyof T>(array: T[], key: K): T[] => {
     const length = array === null ? 0 : array.length;
     if (!length) {
       return [];
@@ -124,4 +156,73 @@ export default class ExtendArray extends Array {
     }
     return result;
   };
+
+  /**
+   * TODO 其他类型的数组没有extends
+   * @param dataSource
+   * @param key
+   * @returns
+   */
+  findIndex<const T extends string[] | number[] | boolean[]>(
+    dataSource: T,
+    key: T[number],
+  ): number;
+  findIndex<T extends Record<PropertyKey, any>, V>(
+    dataSource: T[],
+    key: keyof T,
+    value: V,
+    index?: number | 'first' | 'last',
+  ): number;
+  findIndex<T>(
+    predicate: (value: T, index: number, obj: T[]) => unknown,
+    thisArg?: any,
+  ): number;
+  findIndex(
+    dataSource: any[] | Darwish.AnyFunc,
+    key: any,
+    value?: any,
+    index?: any,
+  ): number {
+    if (!isArray(dataSource)) {
+      console.error('DataSource is not an `array`');
+      return -1;
+    }
+
+    if (dataSource.length === 0) return -1;
+
+    if (
+      ['number', 'boolean', 'string', 'symbol', 'bigint'].includes(
+        typeof dataSource[0],
+      )
+    ) {
+      return dataSource.findIndex((item) => item === key);
+    }
+
+    if (isObject(dataSource[0])) {
+      let count = 0;
+      const len = dataSource.length;
+      let idx = index;
+      if (index === 'first' || index === undefined) {
+        idx = 1;
+      } else if (index === 'last') {
+        idx = -1;
+      } else if (index <= 0 || index > len) {
+        return -1;
+      }
+      for (let i = 0; i < len; i++) {
+        if (dataSource[i][key] === value) {
+          console.log(count, 'count');
+
+          count++;
+
+          if (count === idx) {
+            return i;
+          }
+        }
+      }
+    }
+
+    return -1;
+  }
 }
+const a = [1,2, 3];
