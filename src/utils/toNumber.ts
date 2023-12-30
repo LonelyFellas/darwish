@@ -8,7 +8,7 @@ import { isNumber, isString } from './is';
  * Be care! The second param of function is a default value.
  * If the default value is not provided.
  * When conversion is not possible, it is NaN value.
- * But you already provided the the second value to a default value.
+ * But you already provided the second value to a default value.
  * I sure the value you have set.
  *
  * 返回一个'number'类型的数据,如果不能转换，返回默认值。这个函数的第二个参数是一个默认值，
@@ -16,7 +16,7 @@ import { isNumber, isString } from './is';
  * 如果你设置第二个参数为默认值，自然而然就为你设置的默认值。
  * @param value dataSource (被Changed的数据源)
  * @param defaultValue When conversion is not possible, it is NaN value.
- *  But you can provided any value you want. (默认值 NAN,可以设置默认为 0)
+ *  But you can provide any value you want. (默认值 NAN,可以设置默认为 0)
  * @returns Finally you get a 'number' data. (返回一个'number'类型的数据)
  */
 const toNumber = (value: unknown, defaultValue: number = NaN) => {

@@ -1,18 +1,17 @@
-import type { AnyObj } from 'darwish';
 import { isArray, isBlanks, isObject } from '../is';
 
 export default class ExtendObject extends Object {
-  static pick = <T extends Record<PropertyKey, any>>(
+  static pick = <T extends Darwish.AnyObj>(
     dataSource: T,
     pickKeys: (keyof T)[],
   ) => {
-    if (isObject(dataSource)) {
+    if (!isObject(dataSource)) {
       console.error('DataSource 不是一个Object');
-      return;
+      return dataSource;
     }
 
     const obj: Partial<T> = {};
-    if (Array.isArray(pickKeys)) {
+    if (isArray(pickKeys)) {
       pickKeys?.forEach((key) => {
         if (key in dataSource) {
           obj[key] = dataSource[key];
@@ -23,13 +22,13 @@ export default class ExtendObject extends Object {
     }
     return obj;
   };
-  static omit = <T extends Record<PropertyKey, any>>(
+  static omit = <T extends Darwish.AnyObj>(
     dataSource: T,
     omitKeys: (keyof T)[],
   ) => {
-    if (isObject(dataSource)) {
+    if (!isObject(dataSource)) {
       console.error('DataSource 不是一个Object');
-      return;
+      return dataSource;
     }
 
     const obj: Partial<T> = {};
@@ -45,23 +44,22 @@ export default class ExtendObject extends Object {
     return obj;
   };
 
-  static filterUseless = <T extends AnyObj>(
+  static filterUseless = <T extends Darwish.AnyObj>(
     dataSource: T,
     isFilterEmptyString: boolean = false,
   ) => {
-    if (isObject(dataSource)) {
-      const obj: Partial<T> = {};
-      Object.entries(dataSource).forEach(([key, value]) => {
-        const bool = isFilterEmptyString
-          ? isBlanks(value)
-          : value === undefined || value === null;
-        if (bool) {
-          obj[key as keyof T] = value;
-        }
-      });
-    } else {
-      console.error('数据源不是一个Object类型');
+    if (!isObject(dataSource)) {
+      console.error('DataSource 不是一个Object');
       return dataSource;
     }
+    const obj: Partial<T> = {};
+    Object.entries(dataSource).forEach(([key, value]) => {
+      const bool = isFilterEmptyString
+        ? isBlanks(value)
+        : value === undefined || value === null;
+      if (bool) {
+        obj[key as keyof T] = value;
+      }
+    });
   };
 }
