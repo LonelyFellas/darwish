@@ -225,4 +225,3 @@ export default class ExtendArray<T> extends Array implements Array<T> {
     return -1;
   }
 }
-const a = [1,2, 3];
