@@ -18,7 +18,7 @@ export default function dlv<T>(
   undef?: T,
 ) {
   if (!isObject(obj)) {
-    console.log('obj is not an object');
+    console.error('obj is not an object');
     return obj;
   }
 
