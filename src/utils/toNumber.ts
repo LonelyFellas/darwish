@@ -2,7 +2,7 @@ import { isNumber, isString } from './is';
 
 /**
  * @author Darwish <289582304@qq.com>
- * @test Tested (已加入测试放心使用)
+ * @test ✅Tested (已通过测试放心使用)
  * @description Return a 'number' type data.
  * If it can't to converted, return a default value.
  * Be care! The second param of function is a default value.

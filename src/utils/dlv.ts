@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { isArray, isObject, isString } from './is';
+import { isArray, isFunction, isObject, isString } from './is';
 
 /**
  * @description Get value from object by path.
- * @test Tested (已加入测试放心使用)
+ * @test ✅Tested (已通过测试放心使用)
  * @param obj The object to query.
  * @param key The key of the property to get.
  * @param def The default value.
@@ -34,6 +34,14 @@ export default function dlv<T>(
     const findKey = keys[p];
     data = isObject(data) && findKey in data ? data[findKey] : undef;
   }
-  return data === undef ? def : data;
-}
 
+  if (data === undef) {
+    // not exist with default function
+    if (isFunction(def)) {
+      // not exist with default function and context
+      return def.call(obj);
+    }
+    return def;
+  }
+  return data;
+}
