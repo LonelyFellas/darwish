@@ -1,23 +1,39 @@
 /* eslint-disable no-param-reassign */
-// export default function dlv<T extends Record<PropertyKey, any>>(
-//   obj: T,
-//   key: string = '',
-//   def: unknown = '',
-//   p: number = 0,
-//   undef: unknown = '',
-// ) {
-//   let obj1 = { ...obj };
-//   const keyArr = key.split ? key.split('.') : key;
-//   for (let p1 = p; p1 < keyArr.length; p1++) {
-//     obj1 = obj1 ? obj1[keyArr[p1] as keyof T] : (undef as any);
-//   }
-//   return obj1 === undef ? def : obj1;
-// }
+import { isArray, isObject, isString } from './is';
 
-export default function dlv(obj: any, key: any, def: any, p: any, undef: any) {
-  key = key.split ? key.split('.') : key;
-  for (p = 0; p < key.length; p++) {
-    obj = obj ? obj[key[p]] : undef;
+/**
+ * @description Get value from object by path.
+ * @test Tested (已加入测试放心使用)
+ * @param obj The object to query.
+ * @param key The key of the property to get.
+ * @param def The default value.
+ * @param p The index of the key.
+ * @param undef The undefined value.
+ */
+export default function dlv<T>(
+  obj: Darwish.AnyObj,
+  key: string | string[],
+  def?: string,
+  p?: number,
+  undef?: T,
+) {
+  if (!isObject(obj)) {
+    console.log('obj is not an object');
+    return obj;
   }
-  return obj === undef ? def : obj;
+
+  let keys: any[] = [];
+  if (isString(key)) {
+    keys = key.split ? key.split('.') : [];
+  } else if (isArray(key)) {
+    keys = key;
+  }
+
+  let data = Object.assign({}, obj);
+  for (p = 0; p < keys.length; p++) {
+    const findKey = keys[p];
+    data = isObject(data) && findKey in data ? data[findKey] : undef;
+  }
+  return data === undef ? def : data;
 }
+

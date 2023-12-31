@@ -60,6 +60,8 @@
     "qrcode": "^1.5.3"
   },
   "devDependencies": {
+    "@types/node": "^20.10.6",
+    "ts-node": "^10.9.2",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@types/jest": "^29.5.11",
