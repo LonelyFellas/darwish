@@ -46,7 +46,7 @@ export default class ExtendArray<T> extends Array implements Array<T> {
       }
     });
     return result;
-  }
+  };
   chunk = ExtendArray.chunk;
   /**
    * @property `static` chunk array
@@ -113,22 +113,13 @@ export default class ExtendArray<T> extends Array implements Array<T> {
    * @returns unique array
    */
   uniqueBy = <T, K extends keyof T>(array: T[], key: K): T[] => {
-    const length = array === null ? 0 : array.length;
-    if (!length) {
-      return [];
-    }
-    let index = -1;
-    const result = [];
-    const map = new Map();
-    while (++index < length) {
-      const value = array[index];
-      const keyValue = value[key];
-      if (!map.has(keyValue)) {
-        map.set(keyValue, value);
-        result.push(value);
+    const uniqueArray = array.reduce((acc: T[], current: T) => {
+      if (!acc.find((item) => item[key] === current[key])) {
+        acc.push(current);
       }
-    }
-    return result;
+      return acc;
+    }, []);
+    return uniqueArray;
   };
   /**
    * Don't use this method
@@ -139,22 +130,9 @@ export default class ExtendArray<T> extends Array implements Array<T> {
    * @returns unique array
    */
   uniqueByMap = <T, K extends keyof T>(array: T[], key: K): T[] => {
-    const length = array === null ? 0 : array.length;
-    if (!length) {
-      return [];
-    }
-    let index = -1;
-    const result = [];
-    const map = new Map();
-    while (++index < length) {
-      const value = array[index];
-      const keyValue = value[key];
-      if (!map.has(keyValue)) {
-        map.set(keyValue, value);
-        result.push(value);
-      }
-    }
-    return result;
+    const uniqueMap = new Map(array.map((obj) => [obj[key], obj]));
+    const uniqueArray = Array.from(uniqueMap.values());
+    return uniqueArray;
   };
 
   /**
@@ -224,4 +202,44 @@ export default class ExtendArray<T> extends Array implements Array<T> {
 
     return -1;
   }
+
+  static forEachArr<T>(
+    dataArray: T[],
+    callbackfn: (value: T, index: number, array: T[]) => boolean,
+  ) {
+    let index = -1;
+    while (++index < dataArray.length) {
+      if (callbackfn(dataArray[index], index, dataArray)) {
+        break;
+      }
+    }
+  }
+  static forEachObj<T extends Darwish.AnyObj>(
+    dataObj: T,
+    callbackfn: (value: T[keyof T], key: keyof T, index: number, obj: T) => boolean,
+  ) {
+    let index = -1;
+    const keys = Object.keys(dataObj);
+    while (++index < keys.length) {
+      if (callbackfn(dataObj[keys[index]], keys[index], index, dataObj)) {
+        break;
+      }
+    }
+  }
+  static forEachArrLike<T>(
+    dataArray: ArrayLike<T>,
+    callbackfn: (value: T, index: number, array: ArrayLike<T>) => boolean,
+  ) {
+    let index = -1;
+    while (++index < dataArray.length) {
+      if (callbackfn(dataArray[index], index, dataArray)) {
+        break;
+      }
+    }
+  }
 }
+
+ExtendArray.forEachObj({ a: 1, b: 2 }, (value, key, index, obj) => {
+  console.log(value, key, index, obj);
+  return false;
+})

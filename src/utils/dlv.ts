@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { isArray, isFunction, isObject, isString } from './is';
+import { isArray, isDev, isFunction, isObject, isString } from './is';
 
 /**
  * @description Get value from object by path.
@@ -18,7 +18,9 @@ export default function dlv<T>(
   undef?: T,
 ) {
   if (!isObject(obj)) {
-    console.error('obj is not an object');
+    if (isDev) {
+      console.error('obj is not an object');
+    }
     return obj;
   }
 
@@ -31,7 +33,7 @@ export default function dlv<T>(
 
   let data = Object.assign({}, obj);
   for (p = 0; p < keys.length; p++) {
-    const findKey = keys[p];
+    const findKey: keyof typeof data = keys[p];
     data = isObject(data) && findKey in data ? data[findKey] : undef;
   }
 

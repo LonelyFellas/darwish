@@ -2,10 +2,10 @@ import { isArray, isBlanks, isObject } from '../is';
 
 export default class ExtendObject extends Object {
   /**
-   * @description pick keys from dataSource 
-   * @param dataSource data source 
-   * @param pickKeys pick keys 
-   * @returns picked object 
+   * @description pick keys from dataSource
+   * @param dataSource data source
+   * @param pickKeys pick keys
+   * @returns picked object
    */
   static pick = <T extends Darwish.AnyObj, const K extends keyof T>(
     dataSource: T,
@@ -32,10 +32,10 @@ export default class ExtendObject extends Object {
   };
 
   /**
-   * @description omit keys from dataSource 
-   * @param dataSource data source 
-   * @param omitKeys omit keys 
-   * @returns omitted object 
+   * @description omit keys from dataSource
+   * @param dataSource data source
+   * @param omitKeys omit keys
+   * @returns omitted object
    */
   static omit = <T extends Darwish.AnyObj, const K extends keyof T>(
     dataSource: T,
@@ -63,10 +63,10 @@ export default class ExtendObject extends Object {
   };
 
   /**
-   * @description filter useless key-value from dataSource 
-   * @param dataSource data source 
-   * @param isFilterEmptyString is filter empty string 
-   * @returns filtered object 
+   * @description filter useless key-value from dataSource
+   * @param dataSource data source
+   * @param isFilterEmptyString is filter empty string
+   * @returns filtered object
    */
   static filterUseless = <T extends Darwish.AnyObj>(
     dataSource: T,
@@ -85,5 +85,6 @@ export default class ExtendObject extends Object {
         obj[key as keyof T] = value;
       }
     });
+    return obj;
   };
 }

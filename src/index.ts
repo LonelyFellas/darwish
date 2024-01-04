@@ -36,7 +36,7 @@ import useUpdateEffectOnce from './hooks/useUpdateEffectOnce';
 /**
  * utils
  */
-import {
+import ExtendArray, {
   chunkArray,
   shuffleArray,
   uniqueObjectOfArray,
@@ -45,7 +45,6 @@ import {
 import cloneDeep from './utils/cloneDeep';
 import deepEqual from './utils/deepEqual';
 import dlv from './utils/dlv';
-import isFilterUselessKeyValue from './utils/filterUselessKV';
 import getQueryParams from './utils/getQueryParams';
 import {
   isArray,
@@ -70,15 +69,18 @@ import {
 } from './utils/is';
 import ExtendObject from './utils/obj';
 import { objAssign, objCuter } from './utils/objOperation';
+import ExtendString from './utils/string/index';
 import toNumber from './utils/toNumber';
 import typeOfData from './utils/typeOfData';
 const Darwish = {
+  ExtendObject,
+  ExtendString,
+  ExtendArray,
   cloneDeep,
   getQueryParams,
   isBlanks,
   isBrowser,
   isEmailValid,
-  isFilterUselessKeyValue,
   shuffleArray,
   uniqueObjectOfArray,
   uniqueObjectOfArrayToMap,
@@ -135,7 +137,9 @@ const Darwish = {
   useScroll,
 };
 export {
+  ExtendArray,
   ExtendObject,
+  ExtendString,
   chunkArray,
   cloneDeep,
   deepEqual,
@@ -149,7 +153,6 @@ export {
   isDate,
   isDev,
   isEmailValid,
-  isFilterUselessKeyValue,
   isFunction,
   isMap,
   isNull,
