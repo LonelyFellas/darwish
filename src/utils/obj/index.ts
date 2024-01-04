@@ -1,4 +1,4 @@
-import { isArray, isBlanks, isObject } from '../is';
+import { isArray, isBlanks, isDev, isObject } from '../is';
 
 export default class ExtendObject extends Object {
   /**
@@ -12,13 +12,17 @@ export default class ExtendObject extends Object {
     pickKeys: K[],
   ): Pick<T, K> => {
     if (!isObject(dataSource)) {
-      console.error('DataSource is not an `object`');
+      if (isDev) {
+        console.error('DataSource is not an `object`');
+      }
       return dataSource;
     }
     if (!isArray(pickKeys)) {
-      console.error(
-        `PickKeys: ${JSON.stringify(pickKeys)} is not an \`array\``,
-      );
+      if (isDev) {
+        console.error(
+          `PickKeys: ${JSON.stringify(pickKeys)} is not an \`array\``,
+        );
+      }
       return dataSource;
     }
 
@@ -42,13 +46,17 @@ export default class ExtendObject extends Object {
     omitKeys: K[],
   ): Omit<T, K> => {
     if (!isObject(dataSource)) {
-      console.error('DataSource is not an `object`');
+      if (isDev) {
+        console.error('DataSource is not an `object`');
+      }
       return dataSource;
     }
     if (!isArray(omitKeys)) {
-      console.error(
-        `OmitKeys: ${JSON.stringify(omitKeys)} is not an \`array\``,
-      );
+      if (isDev) {
+        console.error(
+          `OmitKeys: ${JSON.stringify(omitKeys)} is not an \`array\``,
+        );
+      }
       return dataSource;
     }
 
@@ -73,7 +81,9 @@ export default class ExtendObject extends Object {
     isFilterEmptyString: boolean = false,
   ) => {
     if (!isObject(dataSource)) {
-      console.error('DataSource is not an `object`');
+      if (isDev) {
+        console.error('DataSource is not an `object`');
+      }
       return dataSource;
     }
     const obj: Partial<T> = {};
@@ -81,7 +91,7 @@ export default class ExtendObject extends Object {
       const bool = isFilterEmptyString
         ? isBlanks(value)
         : value === undefined || value === null;
-      if (bool) {
+      if (!bool) {
         obj[key as keyof T] = value;
       }
     });
