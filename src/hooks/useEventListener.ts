@@ -1,4 +1,3 @@
-import Darwish from 'darwish';
 import { useEffect } from 'react';
 import isBrowser from '../utils/is/isBrowser';
 /**

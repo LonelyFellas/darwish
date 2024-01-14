@@ -50,8 +50,8 @@ declare global {
     > = P extends null
       ? () => Switch<void, R>
       : P extends any[]
-      ? (...args: P) => Switch<void, R>
-      : (arg: P) => Switch<void, R>;
+        ? (...args: P) => Switch<void, R>
+        : (arg: P) => Switch<void, R>;
     type TupleToObject<T extends readonly PropertyKey[]> = {
       [P in T[number]]: P;
     };
@@ -62,8 +62,8 @@ declare global {
       readonly [P in keyof T]: T[P] extends GenericsFunc
         ? T[P]
         : T[P] extends AnyObj
-        ? DeepReadonly<T[P]>
-        : T[P];
+          ? DeepReadonly<T[P]>
+          : T[P];
     };
     type Includes<T extends readonly any[], U> = T extends [
       infer Item,
@@ -72,12 +72,6 @@ declare global {
       ? Equal<Item, U> extends true
         ? true
         : Includes<B, U>
-      : false;
-
-    type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <
-      T,
-    >() => T extends Y ? 1 : 2
-      ? true
       : false;
     export type If<C extends boolean, T, F> = C extends true ? T : F;
     type Concat<T extends readonly unknown[], U extends readonly unknown[]> = [
