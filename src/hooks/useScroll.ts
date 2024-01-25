@@ -24,6 +24,6 @@ const useScroll = (ref: React.MutableRefObject<HTMLDivElement>) => {
     }
   };
   useEventListener(ref, 'scroll', onScroll as any);
-  return [page, 3];
+  return page;
 };
 export default useScroll;

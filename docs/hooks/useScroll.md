@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { useScroll } from 'darwish';
 export default () => {
   const scrollRef = React.useRef(null);
-  const [{ x, y }, scrolling] = useScroll(scrollRef);
+  const { x, y } = useScroll(scrollRef);
 
   return (
     <div>
