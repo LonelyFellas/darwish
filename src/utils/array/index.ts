@@ -238,8 +238,3 @@ export default class ExtendArray<T> extends Array implements Array<T> {
     }
   }
 }
-
-ExtendArray.forEachObj({ a: 1, b: 2 }, (value, key, index, obj) => {
-  console.log(value, key, index, obj);
-  return false;
-})

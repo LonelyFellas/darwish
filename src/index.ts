@@ -5,6 +5,7 @@ import './types/darwish';
  */
 import useBoolean from './hooks/useBoolean';
 import useCookie from './hooks/useCookie';
+import useCreation from './hooks/useCreation';
 import useDefault from './hooks/useDefault';
 import useDisplayDevError from './hooks/useDisplayDevError';
 import useEffectOnce from './hooks/useEffectOnce';
@@ -20,6 +21,8 @@ import useMount from './hooks/useMount';
 import usePress from './hooks/usePress';
 import usePrevious from './hooks/usePrevious';
 import useQrCode from './hooks/useQrCode';
+import useRafState from './hooks/useRafState';
+import useRequest from './hooks/useRequest';
 import { useRouteState, useRouteStates } from './hooks/useRouteState';
 import useScroll from './hooks/useScroll';
 import useSessionStorage from './hooks/useSessionStorage';
@@ -32,7 +35,6 @@ import useUnmount from './hooks/useUnmount';
 import useUpdate from './hooks/useUpdate';
 import useUpdateEffect from './hooks/useUpdateEffect';
 import useUpdateEffectOnce from './hooks/useUpdateEffectOnce';
-
 /**
  * utils
  */
@@ -69,12 +71,11 @@ import {
 } from './utils/is';
 import ExtendObject from './utils/obj';
 import { objAssign, objCuter } from './utils/objOperation';
-import ExtendString from './utils/string/index';
 import toNumber from './utils/toNumber';
 import typeOfData from './utils/typeOfData';
+
 const Darwish = {
   ExtendObject,
-  ExtendString,
   ExtendArray,
   cloneDeep,
   getQueryParams,
@@ -135,11 +136,13 @@ const Darwish = {
   usePress,
   useDefault,
   useScroll,
+  useRafState,
+  useCreation,
+  useRequest,
 };
 export {
   ExtendArray,
   ExtendObject,
-  ExtendString,
   chunkArray,
   cloneDeep,
   deepEqual,
@@ -173,6 +176,7 @@ export {
   uniqueObjectOfArrayToMap,
   useBoolean,
   useCookie,
+  useCreation,
   useDefault,
   useDisplayDevError,
   useEffectOnce,
@@ -188,6 +192,8 @@ export {
   usePress,
   usePrevious,
   useQrCode,
+  useRafState,
+  useRequest,
   useRouteState,
   useRouteStates,
   useScroll,
