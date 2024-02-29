@@ -1,85 +1,57 @@
-import {useState, useRef, useCallback} from 'react';
-import {useMount, useCreation} from "darwish";
+import {useEffect, useState} from "react";
+import useFetch from "./utils/useFetch";
 /**
  * This hook is used to make requests to the server.
  * It should be used in the components that need to make requests to the server.
  * It should be used in the following way:
  *
  */
-interface Options {
+export interface Options {
   defaultData?: any;
   manual?: boolean;
   defaultParams?: any[];
+  refreshDeps?: React.DependencyList;
   onSuccess?: (data: any) => void;
   onError?: (error: any) => void;
-  onLoading?: () => void;
-  onLoaded?: () => void;
+  onBefore?: () => void;
   onFinally?: () => void;
 }
 export default function useRequest(requestFn: (obj?: any) => Promise<any>, options: Options) {
-  const defaultOptions = {
+  const defaultOptions: Required<Options> = {
     defaultData: options.defaultData || null,
     defaultParams: options.defaultParams || [],
     manual: options.manual || false,
+    refreshDeps: options.refreshDeps || [],
+    onSuccess: options.onSuccess || (() => {}),
+    onError: options.onError || (() => {}),
+    onBefore: options.onBefore || (() => {}),
+    onFinally: options.onFinally || (() => {}),
   }
-  const { onSuccess, onError, onLoading, onLoaded, onFinally } = options;
-  const { manual, defaultData, defaultParams } = defaultOptions;
-  const stateRef = useRef({
-    loading: false,
-    error: null,
-  })
-  const [data, setData] = useState(defaultData);
+  const [count, setCount] = useState(0);
+  const { manual, refreshDeps, defaultData, defaultParams } = defaultOptions;
 
-  const request = useCreation(async (runParams?: any) => {
-    const params = {};
-    if (runParams !== undefined) {
-      Object.assign(params, runParams);
-    } else {
-      const params = {};
-      defaultParams.forEach(it => {
-        Object.assign(params, it);
-      })
-    }
 
-    const res = await requestFn();
-    return res;
-  }, [])
+  const { run, data, loading, error, mutate, ...restParams } = useFetch({
+    service: requestFn,
+    options: defaultOptions,
+  });
 
-  useMount(() => {
+  useEffect(() => {
     if (!manual) {
-      stateRef.current.loading = true;
-      request.then(res => {
-        setData(res);
-        onSuccess?.(res);
-      }).catch(err => {
-        stateRef.current.error = err;
-        onError?.(err);
-      }).finally(() => {
-        stateRef.current.loading = false;
-        onFinally?.();
-      });
+      run(defaultParams);
     }
-  })
+  }, [count, ...refreshDeps])
 
-  const run = useCallback((params?: any) => {
-    // stateRef.current.loading = true;
-    // request(params).then(res => {
-    //   setData(res);
-    //   onSuccess?.(res);
-    // }).catch(err => {
-    //   stateRef.current.error = err;
-    //   onError?.(err);
-    // }).finally(() => {
-    //   stateRef.current.loading = false;
-    //   onFinally?.();
-    // });
-  }, []);
+  const refresh = () => setCount(prev => prev + 1);
 
 
   return {
     data,
     run,
-    loading: stateRef.current.loading,
-    error: stateRef.current.error,
+    refresh,
+    mutate,
+    loading,
+    error,
+    ...restParams,
   };
 }
