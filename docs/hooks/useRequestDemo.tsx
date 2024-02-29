@@ -1,15 +1,18 @@
 import { useRequest } from 'darwish';
-import {useState} from "react";
+import { useState } from 'react';
 
-const getData = (params: any) => {
-  return fetch('https://dev-l03bmzvvrojybo0.api.raw-labs.com/mock/json-api')
-    .then((res) => res.json())
-    .then((res) => res);
-};
+function getUsername(obj?: {name: string}): Promise<string> {
+  console.log('polling getUsername');
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`darwish${Math.random() + 1}`);
+    }, 3000);
+  });
+}
+
 const useRequestDemo = (url: string) => {
   const [count, setCount] = useState(0);
-  const { run, data, loading, refresh, mutate } = useRequest(getData, {
-    defaultData: [],
+  const { run, data, loading, refresh, mutate, cancel } = useRequest(getUsername, {
     refreshDeps: [count],
     onSuccess: (res) => {
       console.log(res, 'onSuccess');
@@ -21,15 +24,23 @@ const useRequestDemo = (url: string) => {
       <button onClick={run} disabled={loading}>
         点击
       </button>
-      <div>{JSON.stringify(data)}</div>
+      <div>{JSON.stringify(data) || 'null'}</div>
       <div onClick={refresh}>
         <button>刷新: {count}</button>
       </div>
       <div>
-        <button onClick={() => mutate((prev: any) => {
-          console.log(prev, 'prev');
-          return [1, 2, 3]
-        })}>Change Data</button>
+        <button
+          onClick={() =>
+            mutate((prev) => {
+              return "Hello, World!";
+            })
+          }
+        >
+          Change Data
+        </button>
+      </div>
+      <div>
+        <button onClick={cancel}>取消</button>
       </div>
     </div>
   );

@@ -1,23 +1,28 @@
-import {useEffect, useState} from "react";
-import useFetch from "./utils/useFetch";
+import React, { useEffect, useState } from 'react';
+import useFetch from './utils/useFetch';
+
 /**
  * This hook is used to make requests to the server.
  * It should be used in the components that need to make requests to the server.
  * It should be used in the following way:
  *
  */
-export interface Options {
-  defaultData?: any;
+export interface Options<TData, TParams> {
+  defaultData?: TData | null;
   manual?: boolean;
-  defaultParams?: any[];
+  defaultParams?: Partial<TParams>[];
   refreshDeps?: React.DependencyList;
-  onSuccess?: (data: any) => void;
-  onError?: (error: any) => void;
+  onSuccess?: (data: TData) => void;
+  onError?: (error: unknown) => void;
   onBefore?: () => void;
   onFinally?: () => void;
 }
-export default function useRequest(requestFn: (obj?: any) => Promise<any>, options: Options) {
-  const defaultOptions: Required<Options> = {
+
+export default function useRequest<TData = null, TParams = null>(
+  requestFn: (obj?: TParams) => Promise<TData>,
+  options: Options<TData, TParams>,
+) {
+  const defaultOptions: Required<Options<TData, TParams>> = {
     defaultData: options.defaultData || null,
     defaultParams: options.defaultParams || [],
     manual: options.manual || false,
@@ -26,12 +31,14 @@ export default function useRequest(requestFn: (obj?: any) => Promise<any>, optio
     onError: options.onError || (() => {}),
     onBefore: options.onBefore || (() => {}),
     onFinally: options.onFinally || (() => {}),
-  }
+  };
   const [count, setCount] = useState(0);
   const { manual, refreshDeps, defaultData, defaultParams } = defaultOptions;
 
-
-  const { run, data, loading, error, mutate, ...restParams } = useFetch({
+  const { run, data, loading, error, mutate, ...restParams } = useFetch<
+    TData,
+    TParams
+  >({
     service: requestFn,
     options: defaultOptions,
   });
@@ -40,10 +47,9 @@ export default function useRequest(requestFn: (obj?: any) => Promise<any>, optio
     if (!manual) {
       run(defaultParams);
     }
-  }, [count, ...refreshDeps])
+  }, [count, ...refreshDeps]);
 
-  const refresh = () => setCount(prev => prev + 1);
-
+  const refresh = () => setCount((prev) => prev + 1);
 
   return {
     data,
