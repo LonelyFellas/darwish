@@ -21,19 +21,4 @@ const stateX = <const T extends [boolean, string][]>(
   return Object.freeze(enumObject);
 };
 
-const b = '-1';
-const Enum = stateX([
-  [typeof b === 'number', 'IsNumber'],
-  [parseInt(b) <= -1, 'NonPositive'],
-  [b === '-1', 'isEqual'],
-]);
-if (Enum.IsNumber) {
-  log('111');
-}
 
-if (Enum.NonPositive) {
-  log('222');
-}
-if (Enum.isEqual) {
-  log('333');
-}

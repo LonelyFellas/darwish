@@ -9,13 +9,9 @@ export default () => {
 
   return (
     <div>
-      <div>x: {x}</div>
-      <div>y: {y}</div>
-      <div
-        ref={scrollRef}
-        style={{ height: '400px', overflowY: 'auto', background: 'gray' }}
-      >
-        <div style={{ height: '1200px', width: '400px' }}></div>
+      <div>x: {x}, y: {y}</div>
+      <div style={{ height: '400px', width: '400px', overflow: 'hidden', background: 'gray' }}>
+        <div ref={scrollRef} style={{ height: '1200px', width: '1200px', overflow: 'auto' }}></div>
       </div>
     </div>
   );
