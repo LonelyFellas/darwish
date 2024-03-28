@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import useFetch from './utils/useFetch';
+import useFetch from '../utils/useFetch';
 
 /**
  * This hook is used to make requests to the server.
@@ -33,7 +33,7 @@ export default function useRequest<TData = null, TParams = null>(
     onFinally: options.onFinally || (() => {}),
   };
   const [count, setCount] = useState(0);
-  const { manual, refreshDeps, defaultData, defaultParams } = defaultOptions;
+  const { manual, refreshDeps, defaultParams } = defaultOptions;
 
   const { run, data, loading, error, mutate, ...restParams } = useFetch<
     TData,

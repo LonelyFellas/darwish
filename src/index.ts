@@ -22,7 +22,7 @@ import usePress from './hooks/usePress';
 import usePrevious from './hooks/usePrevious';
 import useQrCode from './hooks/useQrCode';
 import useRafState from './hooks/useRafState';
-import useRequest from './hooks/useRequest';
+import useRequest from './hooks/useRequest/useRequest';
 import { useRouteState, useRouteStates } from './hooks/useRouteState';
 import useScroll from './hooks/useScroll';
 import useSessionStorage from './hooks/useSessionStorage';

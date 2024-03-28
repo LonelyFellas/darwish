@@ -1,7 +1,9 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useRequest } from 'darwish';
 import { useState } from 'react';
 
-function getUsername(obj?: {name: string}): Promise<string> {
+function getUsername(obj?: { name: string }): Promise<string> {
   console.log('polling getUsername');
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -12,12 +14,15 @@ function getUsername(obj?: {name: string}): Promise<string> {
 
 const useRequestDemo = (url: string) => {
   const [count, setCount] = useState(0);
-  const { run, data, loading, refresh, mutate, cancel } = useRequest(getUsername, {
-    refreshDeps: [count],
-    onSuccess: (res) => {
-      console.log(res, 'onSuccess');
+  const { run, data, loading, refresh, mutate, cancel } = useRequest(
+    getUsername,
+    {
+      refreshDeps: [count],
+      onSuccess: (res) => {
+        console.log(res, 'onSuccess');
+      },
     },
-  });
+  );
 
   return (
     <div>
@@ -32,7 +37,7 @@ const useRequestDemo = (url: string) => {
         <button
           onClick={() =>
             mutate((prev) => {
-              return "Hello, World!";
+              return 'Hello, World!';
             })
           }
         >

@@ -10,7 +10,7 @@
       "@@/*": [".dumi/tmp/*"],
       "darwish": ["src", "*"],
       "darwish/*": ["src/*", "*"]
-    }
+    },
   },
   "exclude": [],
   "include": [

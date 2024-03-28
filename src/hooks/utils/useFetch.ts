@@ -1,5 +1,5 @@
+import type { Options } from 'darwish';
 import { isFunction, useSetState } from 'darwish';
-import type { Options } from 'darwish/hooks/useRequest';
 import React, { useCallback } from 'react';
 
 type States<T> = {
