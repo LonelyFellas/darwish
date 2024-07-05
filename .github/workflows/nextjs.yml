@@ -71,7 +71,9 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
-     
+      - name: Install Deps
+        run: npm install
+        
       - name: Build with Next.js
         run: npm run build
       - name: Upload artifact
